@@ -1,25 +1,26 @@
-.ranking-table{
-    z-index: 10;
-    width:80%;
-    height: 80%;
-    border-radius: 0.5rem;
+.ranking-table {
+  z-index: 10;
+  width: 80%;
+  max-width: 80%;
+  height: 80%;
+  border-radius: 0.5rem;
 }
 
-thead tr{
-    background-color: #060606;
-    color:#b42b2b;
+thead tr {
+  background-color: #060606;
+  color: #b42b2b;
 }
 
-.row-odd{
-    background-color: #141414;
-    transition: all 200ms ease-in-out;
+tbody tr:nth-child(odd) {
+  background-color: #141414;
+  transition: all 200ms ease-in-out;
 }
 
-.row-even{
-    background-color: #222222;
-    transition: all 200ms ease-in-out;
+tbody tr:nth-child(even) {
+  background-color: #222222;
+  transition: all 200ms ease-in-out;
 }
 
-tbody tr:hover{
-    font-size:1.5rem;
+tbody tr:hover {
+  font-size: 1.5rem;
 }

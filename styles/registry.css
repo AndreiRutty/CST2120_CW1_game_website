@@ -1,0 +1,72 @@
+.sign-up-panel{
+    z-index:10;
+    background-color: #141414e2;
+    width:25%;
+    height:90%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.sign-up-panel h2{
+    width: 85%;
+    font-size: 20px;
+    text-align: left;
+}
+
+.sign-up-panel a{
+    color:#b42b2b
+}
+
+input{
+    border-radius: 8px;
+    background-color: #b42b2b2d;
+    width: 90%;
+    margin-bottom: 15px;
+    color: white;
+    font-size: 20px;
+    padding:0 10px;
+}
+
+.confirm{
+    background-color: white;
+    color:#141414;
+    padding: 0px 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    transition:all 200ms ease-in-out
+}
+
+.confirm:hover{
+    background-color: #141414;
+    color:#b42b2b;
+    border:2px solid #b42b2b;
+}
+
+.log-in-panel{
+    z-index:10;
+    background-color: #141414e2;
+    width:25%;
+    height:60%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+
+.log-in-panel h2{
+    width: 85%;
+    font-size: 20px;
+    text-align: left;
+}
+
+.log-in-panel a{
+    color:#b42b2b
+}

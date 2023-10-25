@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/tailwind.css" />
     <link rel="stylesheet" href="../styles/style.css" />
-    <link rel="stylesheet" href="../styles/ranking.css" />
+    <link rel="stylesheet" href="../styles/registry.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -13,7 +13,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Ranking</title>
+    <title>Sign-Up</title>
   </head>
   <body class="overflow-hidden">
     <!-- Navbar -->
@@ -35,9 +35,7 @@
                 <a href="./game.html" class="cursor-pointer text-lg">GAME</a>
               </li>
               <li>
-                <a
-                  href="./ranking.html"
-                  class="cursor-pointer text-xl font-bold underline"
+                <a href="./ranking.html" class="cursor-pointer text-lg"
                   >RANKING</a
                 >
               </li>
@@ -85,59 +83,18 @@
           />
         </video>
 
-        <!-- Ranking Headline -->
-        <div
-          class="z-10 text-white mb-8 cursor-pointer transition-all duration-200 ease-in-out"
-        >
-          <h1 class="text-6xl">RANKING TABLE</h1>
-        </div>
-
-        <!-- Ranking Table -->
-        <div class="ranking-table overflow-y-auto">
-          <table class="w-full border-3 cursor-pointer">
-            <!-- Table Headers -->
-            <thead>
-              <tr class="text-2xl">
-                <th class="py-3">Rank</th>
-                <th class="py-3">Name</th>
-                <th class="py-3">Score</th>
-              </tr>
-            </thead>
-
-            <!-- Table Body -->
-            <tbody>
-              <!-- First Row -->
-              <tr class="text-xl transition-all duration-200 ease-in-out">
-                <th class="py-3">1</th>
-                <th class="py-3">User 1</th>
-                <th class="py-3">100</th>
-              </tr>
-              <!-- Second Row -->
-              <tr class="text-xl transition-all duration-200 ease-in-out">
-                <th class="py-3">2</th>
-                <th class="py-3">User 2</th>
-                <th class="py-3">97</th>
-              </tr>
-              <!-- Third Row -->
-              <tr class="text-xl transition-all duration-200 ease-in-out">
-                <th class="py-3">3</th>
-                <th class="py-3">User 3</th>
-                <th class="py-3">92</th>
-              </tr>
-              <!-- Fourth Row -->
-              <tr class="text-xl transition-all duration-200 ease-in-out">
-                <th class="py-3">4</th>
-                <th class="py-3">User 4</th>
-                <th class="py-3">86</th>
-              </tr>
-              <!-- Fourth Row -->
-              <tr class="text-xl transition-all duration-200 ease-in-out">
-                <th class="py-3">5</th>
-                <th class="py-3">User 5</th>
-                <th class="py-3">80</th>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Log-In Panel -->
+        <div class="log-in-panel">
+          <h1 class="text-4xl">Log In</h1>
+          <div class="w-full flex flex-col justify-center items-center">
+            <!-- Entry Field -->
+            <h2>Email</h2>
+            <input type="email" name="user_email" />
+            <h2>Password</h2>
+            <input type="password" name="password" />
+          </div>
+          <button class="confirm">Log In</button>
+          <h3 class="text-lg mb-4">No Account?<a href="./sign-up.html" class=" cursor-pointer underline-effect"> Sign Up</a></h3>
         </div>
       </div>
     </section>
