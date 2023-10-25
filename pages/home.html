@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/tailwind.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Home</title>
+  </head>
+  <body class="overflow-hidden">
+    <!-- Navbar -->
+    <section>
+      <nav class="bg-black-custom text-white">
+        <div class="navbar-container px-10 py-4">
+          <!-- Logo -->
+          <div class="cursor-pointer text-3xl font-bold text-red-custom">Last Hope</div>
+
+          <!-- Navbar options -->
+          <div>
+            <ul class="flex items-center justify-between">
+              <li>
+                <a href="./home.html" class="cursor-pointer text-xl font-bold">HOME</a>
+              </li>
+              <li>
+                <a href="./game.html"  class="cursor-pointer text-lg">GAME</a>
+              </li>
+              <li>
+                <a href="./ranking.html" class="cursor-pointer text-lg">RANKING</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="dropdown-button flex justify-center items-center cursor-pointer rounded-full bg-red-custom text-black-custom">
+            <i class="fa-solid fa-user"></i>
+            <div class="dropdown-menu bg-black-custom text-red-custom">
+              <ul>
+                <li>
+                  <div class="flex justify-around items-center mb-5">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="text-lg">Username</span>
+                  </div>
+                </li>
+                <li>
+                  <a href="#" class="registry-button py-2">SIGN IN</a>
+                </li>
+                <li>
+                  <a href="#" class="registry-button py-2">LOG IN</a>
+                </li>
+                <li>
+                  <a href="#" class="sign-out-button py-2">SIGN OUT</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <!-- Main -->
+    <section>
+      <div class="background-container flex flex-col justify-center items-star">
+        <!-- Background-Video -->
+        <video autoplay loop muted>
+          <source
+            src="../assets/Game website background video.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <!-- Text Section -->
+        <div class="z-10 ml-10">
+          <!-- Game Title -->
+          <h1 class="game-title sm:text-3xl">Last Hope</h1>
+
+          <!-- Sub Texts -->
+          <div class="z-10 pb-5 mb-5">
+            <h3 class="text-3xl sm:text-2xl">A nuclear bomb just exploded!</h3>
+            <h3 class="text-3xl sm:text-2xl">
+              Collect as many items as you can for surviving the explosion!
+            </h3>
+            <h3 class="text-3xl sm:text-2xl">You are the world's last hope!</h3>
+            <h2 class="text-3xl font-bold sm:text-2xl">GOOD LUCK!</h2>
+          </div>
+
+          <!-- Play Button -->
+          <div class="play-button">
+            <a href="./game.html" class="text-3xl font-bold underline-effect">PLAY NOW</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section>
+      <footer class="flex justify-between items-center">
+        <!-- Logo -->
+        <div class="cursor-pointer text-2xl font-bold sm:text-lg">Last Hope</div>
+
+        <!-- Motto -->
+        <div class="text-2xl sm:text-lg">Your motto: LESS IS <strong>NOT</strong> MORE</div>
+
+        <!-- Social Media Icon Button -->
+        <div class="social-media-container flex justify-between text-white">
+          <a href="#"><i class="fa-brands fa-facebook fa-lg"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram fa-lg"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter fa-lg"></i></a>
+        </div>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+/* Setting a custom font */
+@font-face {
+  font-family: "SpookyFont";
+  src: url("../assets/fonts/NoScary-regular.ttf");
+}
+
+/* Setting the font-family for the whole page */
+* {
+  font-family: "SpookyFont";
+}
+
+nav {
+  height: 10vh;
+}
+
+footer{
+  height: 8vh;
+  padding:2rem;
+  background-color: #141414;
+  color: #b42b2b;
+}
+
+.social-media-container{
+  width: 110px;
+}
+
+.social-media-container a:hover{
+  color:#b42b2b
+}
+
+/* Setting the image size to its default width and the height will be automatically adjusted  */
+img {
+  width: 100%;
+  height: auto;
+}
+
+.bg-black-custom {
+  background-color: #141414;
+}
+
+.bg-red-custom {
+  background-color: #b42b2b;
+}
+
+.text-black-custom {
+  color: #141414;
+}
+
+.text-red-custom {
+  color: #b42b2b;
+}
+
+/* Navbar Styling */
+.navbar-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-container ul {
+  width: 15rem;
+  max-width: 24rem;
+}
+
+.navbar-container a:hover {
+  color: #b42b2b;
+}
+
+/* Styling for the Drop Down Button and Menu */
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  z-index: 20;
+  width: 12rem;
+  margin-top: 345px;
+  margin-right: 80px;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  transition: all 200ms ease-in-out;
+}
+
+.dropdown-menu ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+
+.dropdown-menu li {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.dropdown-button {
+  z-index: 20;
+  width: 2.75rem;
+  height: 2.75rem;
+  transition: all 250ms ease-in-out;
+}
+
+.dropdown-button:hover {
+  background-color: #141414;
+  color: #b42b2b;
+  border: 2px solid #b42b2b;
+}
+
+.dropdown-button:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.registry-button {
+  background-color: white;
+  color: #141414;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 999999px;
+  transition: all 200ms ease-in-out;
+}
+
+.registry-button:hover {
+  background-color: #242424;
+  color: #b42b2b;
+}
+
+.sign-out-button {
+  background-color: #b42b2b;
+  color: #141414;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 999999px;
+  transition: all 200ms ease-in-out;
+}
+
+.sign-out-button:hover {
+  background-color: #242424;
+  color: #b42b2b;
+}
+
+/* Styling for the Background Video */
+.background-container {
+  position: relative;
+  width: 100%;
+  height: 83vh;
+  overflow: hidden;
+  color: white;
+}
+
+/* Targeting video tags in background-container div */
+.background-container video {
+  z-index: -10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-title{
+  font-size: 140px;
+  font-weight: bold;
+  padding-bottom: 0.75rem;
+  
+}
+
+.play-button{
+  z-index: 10;
+  padding: 5px 0; 
+  width: 33.3333%;
+  color:#b42b2b;
+}
+
+/* Black filter styling to put on the video */
+.black-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.darker-black-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Underline Effect on Hover */
+
+.underline-effect {
+  position: relative;
+}
+
+/* Content Before the text which the effect will be applied */
+.underline-effect:before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background-color: #b42b2b;
+  transition: width 1 ease-in-out;
+}
+
+.underline-effect:hover:before {
+  animation-name: mymove;
+  animation-duration: 0.3s;
+  width: 100%;
+}
+
+@keyframes mymove {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
