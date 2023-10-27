@@ -57,7 +57,7 @@
                     <div>
                       <ul class="sidebar-options">
                         <li>
-                          <a href="./home.html" class="cursor-pointer font-bold underline">HOME</a>
+                          <a href="./home.html" class="cursor-pointer">HOME</a>
                         </li>
                         <li>
                           <a href="./game.html"  class="cursor-pointer">GAME</a>
@@ -76,7 +76,7 @@
                           <a href="./sign-up.html" class="registry-button py-2">SIGN IN</a>
                         </li>
                         <li>
-                          <a href="./log-in.html" class="registry-button py-2">LOG IN</a>
+                          <a href="./log-in.html" class="registry-button py-2  font-bold underline">LOG IN</a>
                         </li>
                         <li>
                           <button class="sign-out-button py-2">SIGN OUT</button>
@@ -138,9 +138,9 @@
           <h1 class="text-4xl">Log In</h1>
           <div class="w-full flex flex-col justify-center items-center">
             <!-- Entry Field -->
-            <h2>Email</h2>
+            <div class="entry-headline"><i class="fa-solid fa-envelope fa-sm"></i><h2>Email</h2></div>
             <input type="email" name="user_email" />
-            <h2>Password</h2>
+            <div class="entry-headline"><i class="fa-solid fa-lock fa-sm"></i><h2>Password</h2></div>
             <input type="password" name="password" />
           </div>
           <button class="confirm">Log In</button>
@@ -166,7 +166,7 @@
         <div class="social-media-container flex justify-between text-white">
           <a href="#"><i class="fa-brands fa-facebook fa-lg"></i></a>
           <a href="#"><i class="fa-brands fa-instagram fa-lg"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter fa-lg"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter fa-lg"></i></a>
         </div>
       </footer>
     </section>
