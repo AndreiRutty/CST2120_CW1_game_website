@@ -20,34 +20,78 @@
       <nav class="bg-black-custom text-white">
         <div class="navbar-container px-10 py-4">
           <!-- Logo -->
-          <div class="cursor-pointer text-3xl font-bold text-red-custom">
-            Last Hope
-          </div>
+          <div class="cursor-pointer text-3xl font-bold text-red-custom">Last Hope</div>
 
           <!-- Navbar options -->
-          <div>
-            <ul class="flex items-center justify-between">
+          <div class="navbar-options">
+            <ul class="navbar-list flex items-center justify-between">
               <li>
-                <a href="./home.html" class="cursor-pointer text-lg">HOME</a>
+                <a href="./home.html" class="cursor-pointer text-xl font-bold underline">HOME</a>
               </li>
               <li>
-                <a
-                  href="./game.html"
-                  class="cursor-pointer text-xl font-bold underline"
-                  >GAME</a
-                >
+                <a href="./game.html"  class="cursor-pointer text-lg">GAME</a>
               </li>
               <li>
-                <a href="./ranking.html" class="cursor-pointer text-lg"
-                  >RANKING</a
-                >
+                <a href="./ranking.html" class="cursor-pointer text-lg">RANKING</a>
               </li>
             </ul>
           </div>
+
+          <!-- Hamburger Menu - Sidebar for Mobile -->
+          <div class="hamburger-menu">
+            <button id="sidebar-button"><i class="fa-solid fa-bars"></i></button>
+            <div class="sidebar">
+                <ul class="sidebar-list">
+                  <li>
+                    <div class="sidebar-header flex justify-center items-center mb-5">
+                      <div>
+                        <i class="fa-solid fa-user"></i>
+                        <span class="ml-5">Username</span>
+                      </div>
+                      <button id="sidebar-close-button"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div>
+                      <ul class="sidebar-options">
+                        <li>
+                          <a href="./home.html" class="cursor-pointer">HOME</a>
+                        </li>
+                        <li>
+                          <a href="./game.html"  class="cursor-pointer font-bold underline">GAME</a>
+                        </li>
+                        <li>
+                          <a href="./ranking.html" class="cursor-pointer">RANKING</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div>
+                      <ul>
+                        <li>
+                          <a href="./sign-up.html" class="registry-button py-2">SIGN IN</a>
+                        </li>
+                        <li>
+                          <a href="./log-in.html" class="registry-button py-2">LOG IN</a>
+                        </li>
+                        <li>
+                          <button class="sign-out-button py-2">SIGN OUT</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+
+
+
+                </ul>
+            </div>
+          </div>
+
           <!-- Drop Down Menu Button -->
-          <div
-            class="dropdown-button flex justify-center items-center cursor-pointer rounded-full bg-red-custom text-black-custom"
-          >
+          <div class="dropdown-button flex justify-center items-center cursor-pointer rounded-full bg-red-custom text-black-custom">
             <i class="fa-solid fa-user"></i>
             <!-- Drop Down Menu Container -->
             <div class="dropdown-menu bg-black-custom text-red-custom">
@@ -60,14 +104,10 @@
                   </div>
                 </li>
                 <li>
-                  <a href="./sign-up.html" class="registry-button py-2"
-                    >SIGN IN</a
-                  >
+                  <a href="./sign-up.html" class="registry-button py-2">SIGN IN</a>
                 </li>
                 <li>
-                  <a href="./log-in.html" class="registry-button py-2"
-                    >LOG IN</a
-                  >
+                  <a href="./log-in.html" class="registry-button py-2">LOG IN</a>
                 </li>
                 <li>
                   <button class="sign-out-button py-2">SIGN OUT</button>
@@ -109,5 +149,6 @@
         </div>
       </footer>
     </section>
+    <script src="../scripts/sidebar.js"></script>
   </body>
 </html>
