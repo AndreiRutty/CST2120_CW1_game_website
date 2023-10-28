@@ -9,35 +9,6 @@
   font-family: "SpookyFont";
 }
 
-body {
-  background-color: #141414;
-}
-
-nav {
-  height: 10vh;
-}
-
-footer {
-  height: 8vh;
-  padding: 2rem;
-  background-color: #141414;
-  color: #b42b2b;
-}
-
-.social-media-container {
-  width: 110px;
-}
-
-.social-media-container a:hover {
-  color: #b42b2b;
-}
-
-/* Setting the image size to its default width and the height will be automatically adjusted  */
-img {
-  width: 100%;
-  height: auto;
-}
-
 .bg-black-custom {
   background-color: #141414;
 }
@@ -54,7 +25,17 @@ img {
   color: #b42b2b;
 }
 
-/* Navbar Styling */
+/* Setting the image size to its default width and the height will be automatically adjusted  */
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* Navbar Styling Section */
+nav {
+  height: 10vh;
+}
+
 .navbar-container {
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +44,7 @@ img {
   width: 100%;
 }
 
-.navbar-list{
+.navbar-list {
   width: 15rem;
   max-width: 24rem;
 }
@@ -157,7 +138,7 @@ img {
 }
 
 .sidebar {
-  display:none;
+  display: none;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -168,12 +149,12 @@ img {
   background-color: #141414;
   color: white;
   border-left: 2px solid white;
-  transition:all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
-.show{
+.show {
   display: block;
-  right:0;
+  right: 0;
   opacity: 1;
 }
 
@@ -183,31 +164,31 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding:30px;
+  padding: 30px;
 }
 
-.sidebar-list li{
-  width:100%;
+.sidebar-list li {
+  width: 100%;
 }
 
-.sidebar-header{
+.sidebar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.sidebar-options{
-  width:100%;
+.sidebar-options {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin:30px 0 60px;
+  margin: 30px 0 60px;
   text-align: center;
 }
 
-.sidebar-options li{
-  margin:10px 0;
+.sidebar-options li {
+  margin: 10px 0;
 }
 
 .sidebar .registry-button {
@@ -224,6 +205,12 @@ img {
   border-radius: 10px;
   transition: all 200ms ease-in-out;
   margin: 20px 0;
+}
+
+/* Body Styling Section */
+
+body {
+  background-color: #141414;
 }
 
 /* Styling for the Background Video */
@@ -254,9 +241,20 @@ img {
 
 .play-button {
   z-index: 10;
-  padding: 5px 0;
+  padding: 10px 0;
   width: 33.3333%;
   color: #b42b2b;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.text-section h3 {
+  font-size: 25px;
+}
+
+.text-section h2 {
+  font-size: 30px;
+  font-weight: bold;
 }
 
 /* Black filter styling to put on the video */
@@ -278,8 +276,32 @@ img {
   background: rgba(0, 0, 0, 0.5);
 }
 
-/* Underline Effect on Hover */
+/* Footer Styling Section */
+footer {
+  height: 8vh;
+  padding: 2rem;
+  background-color: #141414;
+  color: #b42b2b;
+}
 
+.footer-title{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.motto{
+  font-size: 20px;
+}
+
+.social-media-container {
+  width: 110px;
+}
+
+.social-media-container a:hover {
+  color: #b42b2b;
+}
+
+/* Underline Effect on Hover */
 .underline-effect {
   position: relative;
 }
@@ -322,6 +344,31 @@ img {
 
   .hamburger-menu {
     display: block;
-    
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .game-title {
+    font-size: 100px;
+  }
+
+  .text-section h3 {
+    font-size: 25px;
+  }
+
+  .text-section h2 {
+    font-size: 25px;
+  }
+
+  .play-button {
+    font-size: 25px;
+  }
+
+  .footer-title{
+    font-size: 20px;
+  }
+  
+  .motto{
+    font-size: 15px;
   }
 }
