@@ -9,6 +9,7 @@
   font-family: "SpookyFont";
 }
 
+/* Background Colors */
 .bg-black-custom {
   background-color: #141414;
 }
@@ -17,6 +18,7 @@
   background-color: #b42b2b;
 }
 
+/* Text Colors */
 .text-black-custom {
   color: #141414;
 }
@@ -31,7 +33,7 @@ img {
   height: auto;
 }
 
-/* Navbar Styling Section */
+/* --------------------------Navbar Styling Section-------------------------- */
 nav {
   height: 10vh;
 }
@@ -132,7 +134,7 @@ nav {
   color: #b42b2b;
 }
 
-/* Sidebar Styling */
+/* --------------------------Sidebar Styling-------------------------- */
 .hamburger-menu {
   display: none;
 }
@@ -207,7 +209,7 @@ nav {
   margin: 20px 0;
 }
 
-/* Body Styling Section */
+/* --------------------------Body Styling Section-------------------------- */
 
 body {
   background-color: #141414;
@@ -276,7 +278,7 @@ body {
   background: rgba(0, 0, 0, 0.5);
 }
 
-/* Footer Styling Section */
+/* --------------------------Footer Styling Section-------------------------- */
 footer {
   height: 8vh;
   padding: 2rem;
@@ -301,7 +303,7 @@ footer {
   color: #b42b2b;
 }
 
-/* Underline Effect on Hover */
+/* --------------------------Underline Effect on Hover-------------------------- */
 .underline-effect {
   position: relative;
 }
@@ -323,6 +325,7 @@ footer {
   width: 100%;
 }
 
+/* Animation */
 @keyframes hover-effect {
   0% {
     width: 0%;

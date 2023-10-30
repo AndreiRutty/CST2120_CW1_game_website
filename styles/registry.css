@@ -1,3 +1,4 @@
+/* --------------------------Sign Up Page Styling-------------------------- */
 .sign-up-panel {
   z-index: 10;
   background-color: #141414e2;
@@ -29,6 +30,7 @@
   color: #b42b2b;
 }
 
+/* --------------------------Styles for both Sign Up and Login Page-------------------------- */
 input {
   border-radius: 8px;
   background-color: #b42b2b2d;
@@ -55,6 +57,7 @@ input {
   border: 2px solid #b42b2b;
 }
 
+/* --------------------------Login Page Style-------------------------- */
 .log-in-panel {
   z-index: 10;
   background-color: #141414e2;

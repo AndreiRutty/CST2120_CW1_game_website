@@ -1,3 +1,4 @@
+/* Ranking Table Styling */
 .ranking-table {
   z-index: 10;
   width: 80%;
@@ -6,11 +7,14 @@
   border-radius: 0.5rem;
 }
 
+/* Table Header */
 thead tr {
   background-color: #060606;
   color: #b42b2b;
 }
 
+/* Table Bodying */
+/* Odd number row have a darker background color than even row number */
 tbody tr:nth-child(odd) {
   background-color: #141414;
   transition: all 200ms ease-in-out;
