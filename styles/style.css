@@ -318,12 +318,12 @@ footer {
 }
 
 .underline-effect:hover:before {
-  animation-name: mymove;
+  animation-name: hover-effect;
   animation-duration: 0.3s;
   width: 100%;
 }
 
-@keyframes mymove {
+@keyframes hover-effect {
   0% {
     width: 0%;
   }
