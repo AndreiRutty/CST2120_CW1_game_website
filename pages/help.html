@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/tailwind.css" />
     <link rel="stylesheet" href="../styles/style.css" />
-    <link rel="stylesheet" href="../styles/registry.css" />
+    <link rel="stylesheet" href="../styles/table.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -13,7 +13,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Sign-Up</title>
+    <title>Ranking</title>
   </head>
   <body class="overflow-hidden">
     <!-- Navbar -->
@@ -36,7 +36,7 @@
                 <a href="./ranking.html" class="cursor-pointer text-lg underline-effect">RANKING</a>
               </li>
               <li>
-                <a href="./help.html" class="cursor-pointer text-lg underline-effect">HELP</a>
+                <a href="./help.html" class="cursor-pointer text-xl font-bold underline-effect">HELP</a>
               </li>
             </ul>
           </div>
@@ -69,7 +69,7 @@
                           <a href="./ranking.html" class="cursor-pointer underline-effect">RANKING</a>
                         </li>
                         <li>
-                          <a href="./help.html" class="cursor-pointer underline-effect">HELP</a>
+                          <a href="./help.html" class="cursor-pointer font-bold underline-effect">HELP</a>
                         </li>
                       </ul>
                     </div>
@@ -82,7 +82,7 @@
                           <a href="./sign-up.html" class="registry-button py-2">SIGN IN</a>
                         </li>
                         <li>
-                          <a href="./log-in.html" class="registry-button py-2  font-bold underline">LOG IN</a>
+                          <a href="./log-in.html" class="registry-button py-2">LOG IN</a>
                         </li>
                         <li>
                           <button class="sign-out-button py-2">SIGN OUT</button>
@@ -90,9 +90,6 @@
                       </ul>
                     </div>
                   </li>
-
-
-
                 </ul>
             </div>
           </div>
@@ -139,18 +136,53 @@
           />
         </video>
 
-        <!-- Log-In Panel -->
-        <div class="log-in-panel">
-          <h1 class="text-4xl">Log In</h1>
-          <div class="w-full flex flex-col justify-center items-center">
-            <!-- Entry Field -->
-            <div class="entry-headline"><i class="fa-solid fa-envelope fa-sm"></i><h2>Email</h2></div>
-            <input type="email" name="user_email" />
-            <div class="entry-headline"><i class="fa-solid fa-lock fa-sm"></i><h2>Password</h2></div>
-            <input type="password" name="password" />
-          </div>
-          <button class="confirm">Log In</button>
-          <h3 class="text-lg mb-4">No Account?<a href="./sign-up.html" class=" cursor-pointer underline-effect"> Sign Up</a></h3>
+        <!-- Help Headline -->
+        <div
+          class="z-10 text-white mb-8 cursor-pointer transition-all duration-200 ease-in-out"
+        >
+          <h1 class="text-6xl">HOW TO PLAY?</h1>
+        </div>
+
+        <!-- Help Table -->
+        <div class="help-table overflow-y-auto">
+          <table class="w-full border-3 cursor-pointer">
+            <!-- Table Headers -->
+            <thead>
+              <tr class="text-2xl">
+                <th class="py-3">KEY</th>
+                <th class="py-3">PURPOSE</th>
+              </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody>
+              <!-- First Row -->
+              <tr class="text-xl transition-all duration-200 ease-in-out">
+                <th class="py-3">W</th>
+                <th class="py-3">MOVE FORWARD</th>
+              </tr>
+              <!-- Second Row -->
+              <tr class="text-xl transition-all duration-200 ease-in-out">
+                <th class="py-3">S</th>
+                <th class="py-3">MOVE BACKWARD</th>
+              </tr>
+              <!-- Third Row -->
+              <tr class="text-xl transition-all duration-200 ease-in-out">
+                <th class="py-3">A</th>
+                <th class="py-3">MOVE TO THE LEFT</th>
+              </tr>
+              <!-- Fourth Row -->
+              <tr class="text-xl transition-all duration-200 ease-in-out">
+                <th class="py-3">D</th>
+                <th class="py-3">MOVE TO THE RIGHT</th>
+              </tr>
+              <!-- Fifth Row -->
+              <tr class="text-xl transition-all duration-200 ease-in-out">
+                <th class="py-3">E</th>
+                <th class="py-3">PICK UP ITEMS</th>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
