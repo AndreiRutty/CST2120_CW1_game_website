@@ -1,0 +1,13 @@
+.game-container{
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+
+/* Placing the rooter at the bottom of the page */
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
