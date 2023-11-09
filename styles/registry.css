@@ -1,3 +1,7 @@
+button{
+  font-weight: bold;
+}
+
 /* --------------------------Sign Up Page Styling-------------------------- */
 .sign-up-panel {
   z-index: 10;
@@ -24,6 +28,12 @@
   display: flex;
   justify-items: center;
   align-items: center;
+}
+
+.error-message{
+  color:#b42b2b;
+  font-size: 20px;
+  width:100%;
 }
 
 .sign-up-panel a {
