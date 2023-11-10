@@ -8,20 +8,6 @@ var phoneNumberErrorMsg = document.getElementById("phone-number-error-message");
 // Button
 var signUpBtn = document.getElementById("sign-up-button");
 
-// Function to check if the entry fields are not left empty
-const checkEntryPresence = (userName, userPhoneNumber) => {
-  valid = true;
-
-  if (!userName) {
-    usernameErrorMsg.innerHTML = "Username cannot be left empty!";
-    valid = false;
-  }
-  if (!userPhoneNumber) {
-  }
-
-  return valid;
-};
-
 // Function to reset the inner HTML of the error message header
 const resetErrorMessage = () => {
   if (usernameErrorMsg) {
@@ -50,12 +36,30 @@ const resetErrorMessage = () => {
   }
 };
 
-/*
-TODO:
-Validate Username - check if not already exist
-Validate Age - checks if it is b/w 0 and 100
-Validate Phone Number - check data type and length
-*/
+// Function that will validate the username
+const validateUsername = (userName) => {
+  valid = true;
+
+  // Checking if user has input a username
+  if (userName){
+    // Checking if the username already exists in local storage
+    var alreadyExist = localStorage.getItem(userName);
+
+    if (alreadyExist){
+      usernameErrorMsg.innerHTML = `${userName} is not available. Try a different user name`;
+      valid = false;
+    }else{
+      usernameErrorMsg.innerHTML = "Valid Username";
+      usernameErrorMsg.style.color = "green";
+    }
+
+  }else{
+    usernameErrorMsg.innerHTML = "Username cannot be left empty!";
+    valid = false;
+  }
+
+  return valid;
+}
 
 // Function that will validate the email
 const validateEmail = (userEmail) => {
@@ -181,15 +185,12 @@ const getEntryValue = () => {
   // Resetting error message headers to default settings
   resetErrorMessage();
 
+  var isUserNameValid = validateUsername(userName);
   var isEmailValid = validateEmail(email);
   var isPasswordValid = validatePassword(password);
   var isAgeValid = validateAge(age);
   var isPhoneNumber = validatePhoneNumber(phoneNumber);
 
-  console.log(isEmailValid);
-  console.log(isPasswordValid);
-  console.log(isAgeValid);
-  console.log(isPhoneNumber);
 };
 
 signUpBtn.addEventListener("click", getEntryValue);
