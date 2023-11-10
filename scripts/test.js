@@ -1,7 +1,7 @@
 var userObj1 = {
   name: "Test",
   email: "test@gmail.com",
-  password: "test12345",
+  password: "Test12345",
   age: "20",
   phoneNumber: "123456789",
   isLogIn: false,
@@ -10,7 +10,7 @@ var userObj1 = {
 var userObj2 = {
   name: "Test2",
   email: "test2@gmail.com",
-  password: "test54321",
+  password: "Test54321",
   age: "20",
   phoneNumber: "987654321",
   isLogIn: true,
@@ -18,8 +18,8 @@ var userObj2 = {
 
 var userObj3 = {
     name: "Test3",
-    email: "test2@gmail.com",
-    password: "test354321",
+    email: "test3@gmail.com",
+    password: "Test354321",
     age: "20",
     phoneNumber: "987645321",
     isLogIn: false,
