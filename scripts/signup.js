@@ -9,34 +9,14 @@ var phoneNumberErrorMsg = document.getElementById("phone-number-error-message");
 var signUpBtn = document.getElementById("sign-up-button");
 
 // Function to check if the entry fields are not left empty
-const checkEntryPresence = (
-  userName,
-  userEmail,
-  userPassword,
-  userAge,
-  userPhoneNumber
-) => {
+const checkEntryPresence = (userName, userPhoneNumber) => {
   valid = true;
 
   if (!userName) {
     usernameErrorMsg.innerHTML = "Username cannot be left empty!";
     valid = false;
   }
-  if (!userEmail) {
-    emailErrorMsg.innerHTML = "Email cannot be left empty!";
-    valid = false;
-  }
-  if (!userPassword) {
-    passwordErrorMsg.innerHTML = "Password cannot be left empty!";
-    valid = false;
-  }
-  if (!userAge) {
-    ageErrorMsg.innerHTML = "Age cannot be left empty!";
-    valid = false;
-  }
   if (!userPhoneNumber) {
-    phoneNumberErrorMsg.innerHTML = "Phone Number cannot be left empty!";
-    valid = false;
   }
 
   return valid;
@@ -73,8 +53,6 @@ const resetErrorMessage = () => {
 /*
 TODO:
 Validate Username - check if not already exist
-Validate Email - check if it contains '@'
-Validate Password - checks lengths and characters
 Validate Age - checks if it is b/w 0 and 100
 Validate Phone Number - check data type and length
 */
@@ -83,7 +61,7 @@ Validate Phone Number - check data type and length
 const validateEmail = (userEmail) => {
   const atSign = /@/;
   var valid = true;
-  var validRegex =
+  var emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   // Checking if user has input an email
@@ -94,13 +72,99 @@ const validateEmail = (userEmail) => {
       valid = false;
     } else {
       // Checking if the email is the correct format
-      if (validRegex.test(userEmail)) {
+      if (emailRegex.test(userEmail)) {
         emailErrorMsg.innerHTML = "Valid Email!";
         emailErrorMsg.style.color = "green";
-      }else{
+      } else {
         emailErrorMsg.innerHTML = "Incomplete Email!";
+        valid = false;
       }
     }
+  } else {
+    emailErrorMsg.innerHTML = "Email cannot be left empty!";
+    valid = false;
+  }
+
+  return valid;
+};
+
+// Function that will validate the password
+const validatePassword = (userPassword) => {
+  var valid = true;
+  var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]+$/;
+
+  // Checking user has entered a password
+  if (userPassword) {
+    // Checking password length
+    if (userPassword.length < 8) {
+      passwordErrorMsg.innerHTML = "Password should be eight characters long!";
+      valid = false;
+    } else {
+      // Checking for password strength -if it includes lowercase, uppercase and numbers
+      if (!passwordRegex.test(userPassword)) {
+        passwordErrorMsg.innerHTML =
+          "Weak Password! Include at least one lowercase, uppercase and a number";
+        valid = false;
+      } else {
+        passwordErrorMsg.innerHTML = "Strong Password!";
+        passwordErrorMsg.style.color = "green";
+      }
+    }
+  } else {
+    passwordErrorMsg.innerHTML = "Password cannot be left empty!";
+    valid = false;
+  }
+
+  return valid;
+};
+
+// Function that will validate the age
+const validateAge = (userAge) => {
+  var valid = true;
+
+  // Checking if user has input an age value
+  if (userAge) {
+    // Checking if the user has input a number or not
+    if (isNaN(userAge)) {
+      ageErrorMsg.innerHTML = "Invalid Age!";
+      valid = false;
+    } else {
+      // Checking if the user is older than 12
+
+      // Converting string to number
+      var ageValue = Number(userAge);
+
+      if (ageValue < 12) {
+        ageErrorMsg.innerHTML = "You are too young to play this game!";
+      } else {
+        ageErrorMsg.innerHTML = "Valid Age!";
+        ageErrorMsg.style.color = "green";
+      }
+    }
+  } else {
+    ageErrorMsg.innerHTML = "Age cannot be left empty!";
+    valid = false;
+  }
+
+  return valid;
+};
+
+// Function to check if the phone number is valid
+const validatePhoneNumber = (userPhoneNumber) => {
+  var valid = true;
+
+  // Checking if the user has input a phone number
+  if (userPhoneNumber) {
+    if (isNaN(userPhoneNumber)){
+      phoneNumberErrorMsg.innerHTML = "Invalid Phone Number!";
+      valid = false;
+    }else{
+      phoneNumberErrorMsg.innerHTML = "Valid Phone Number!";
+      phoneNumberErrorMsg.style.color = "green";
+    }
+  } else {
+    phoneNumberErrorMsg.innerHTML = "Phone Number cannot be left empty!";
+    valid = false;
   }
 
   return valid;
@@ -117,18 +181,15 @@ const getEntryValue = () => {
   // Resetting error message headers to default settings
   resetErrorMessage();
 
-  // Checking if there is input in the entry field
-  var isPresent = checkEntryPresence(
-    userName,
-    email,
-    password,
-    age,
-    phoneNumber
-  );
   var isEmailValid = validateEmail(email);
+  var isPasswordValid = validatePassword(password);
+  var isAgeValid = validateAge(age);
+  var isPhoneNumber = validatePhoneNumber(phoneNumber);
 
-  console.log(isPresent);
   console.log(isEmailValid);
+  console.log(isPasswordValid);
+  console.log(isAgeValid);
+  console.log(isPhoneNumber);
 };
 
 signUpBtn.addEventListener("click", getEntryValue);

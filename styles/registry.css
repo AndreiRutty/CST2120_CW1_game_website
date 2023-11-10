@@ -6,7 +6,7 @@ button{
 .sign-up-panel {
   z-index: 10;
   background-color: #141414e2;
-  width: 30%;
+  width: 36%;
   height: 90%;
   border-radius: 8px;
   display: flex;
@@ -17,7 +17,7 @@ button{
 }
 
 .sign-up-panel h2 {
-  width: 85%;
+  width: 20%;
   font-size: 20px;
   text-align: left;
   margin-left: 15px;
@@ -33,6 +33,7 @@ button{
 .error-message{
   color:#b42b2b;
   font-size: 17px;
+  text-align: left;
   font-weight: bold;
   width:100%;
 }
@@ -46,7 +47,7 @@ input {
   border-radius: 8px;
   background-color: #b42b2b2d;
   width: 90%;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: white;
   font-size: 20px;
   padding: 0 10px;
