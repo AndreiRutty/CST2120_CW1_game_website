@@ -16,6 +16,9 @@ const signOut = () => {
       if (user.isLogIn) {
         user.isLogIn = false;
         localStorage.setItem(user.name, JSON.stringify(user));
+
+        // Redirecting user to home page
+        window.location.href = "/index.html";
       }
     }
   }
