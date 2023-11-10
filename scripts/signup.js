@@ -38,28 +38,27 @@ const resetErrorMessage = () => {
 
 // Function that will validate the username
 const validateUsername = (userName) => {
-  valid = true;
+  var valid = true;
 
   // Checking if user has input a username
-  if (userName){
+  if (userName) {
     // Checking if the username already exists in local storage
     var alreadyExist = localStorage.getItem(userName);
 
-    if (alreadyExist){
+    if (alreadyExist) {
       usernameErrorMsg.innerHTML = `${userName} is not available. Try a different user name`;
       valid = false;
-    }else{
+    } else {
       usernameErrorMsg.innerHTML = "Valid Username";
       usernameErrorMsg.style.color = "green";
     }
-
-  }else{
+  } else {
     usernameErrorMsg.innerHTML = "Username cannot be left empty!";
     valid = false;
   }
 
   return valid;
-}
+};
 
 // Function that will validate the email
 const validateEmail = (userEmail) => {
@@ -159,10 +158,10 @@ const validatePhoneNumber = (userPhoneNumber) => {
 
   // Checking if the user has input a phone number
   if (userPhoneNumber) {
-    if (isNaN(userPhoneNumber)){
+    if (isNaN(userPhoneNumber)) {
       phoneNumberErrorMsg.innerHTML = "Invalid Phone Number!";
       valid = false;
-    }else{
+    } else {
       phoneNumberErrorMsg.innerHTML = "Valid Phone Number!";
       phoneNumberErrorMsg.style.color = "green";
     }
@@ -174,8 +173,35 @@ const validatePhoneNumber = (userPhoneNumber) => {
   return valid;
 };
 
+// Function that will create the user
+const createUser = (userName, email, password, age, phoneNumber) => {
+  var key = userName;
+
+  var value = {
+    name: userName,
+    email: email,
+    password: password,
+    age: age,
+    phoneNumber: phoneNumber,
+    isLogIn: false
+  };
+
+  // Sending object to local storage
+  localStorage.setItem(key, JSON.stringify(value));
+
+  // Checking if the object was sent to the local storage successfully
+  if (localStorage.getItem(key)) {
+    // Setting isLogin attribute to true
+    var user = JSON.parse(localStorage.getItem(key));
+
+    user.isLogIn = true;
+
+    localStorage.setItem(key, JSON.stringify(user));
+  }
+};
+
 // Function to get value of entry field
-const getEntryValue = () => {
+const signUp = () => {
   var userName = document.getElementById("username").value;
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
@@ -185,12 +211,24 @@ const getEntryValue = () => {
   // Resetting error message headers to default settings
   resetErrorMessage();
 
+  // Checking validity of the user input
   var isUserNameValid = validateUsername(userName);
   var isEmailValid = validateEmail(email);
   var isPasswordValid = validatePassword(password);
   var isAgeValid = validateAge(age);
   var isPhoneNumber = validatePhoneNumber(phoneNumber);
 
+  if (
+    isUserNameValid &&
+    isEmailValid &&
+    isPasswordValid &&
+    isAgeValid &&
+    isPhoneNumber
+  ) {
+    // Creating user and adding the user to the local storage
+    createUser(userName, email, password, age, phoneNumber);
+  }
 };
 
-signUpBtn.addEventListener("click", getEntryValue);
+signUpBtn.addEventListener("click", signUp);
+
