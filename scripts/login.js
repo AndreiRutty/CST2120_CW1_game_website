@@ -42,6 +42,8 @@ const logInCheck = (email, password) => {
             user.isLogIn = true;
             localStorage.setItem(user.name, JSON.stringify(user));
 
+            // Redirecting user to home page
+            window.location.href = "/index.html";
           } else {
             passwordErrorMsg.innerHTML = "Wrong Password.";
             passwordErrorMsg.style.color = "#b42b2b";

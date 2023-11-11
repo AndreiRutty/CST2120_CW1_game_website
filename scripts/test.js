@@ -4,6 +4,7 @@ var userObj1 = {
   password: "Test12345",
   age: "20",
   phoneNumber: "123456789",
+  score: 0,
   isLogIn: false,
 };
 
@@ -13,17 +14,19 @@ var userObj2 = {
   password: "Test54321",
   age: "20",
   phoneNumber: "987654321",
+  score: 0,
   isLogIn: true,
 };
 
 var userObj3 = {
-    name: "Test3",
-    email: "test3@gmail.com",
-    password: "Test354321",
-    age: "20",
-    phoneNumber: "987645321",
-    isLogIn: false,
-  };
+  name: "Test3",
+  email: "test3@gmail.com",
+  password: "Test354321",
+  age: "20",
+  phoneNumber: "987645321",
+  score: 0,
+  isLogIn: false,
+};
 
 localStorage.setItem("Test", JSON.stringify(userObj1));
 localStorage.setItem("Test2", JSON.stringify(userObj2));

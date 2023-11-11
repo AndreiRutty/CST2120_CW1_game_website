@@ -183,7 +183,8 @@ const createUser = (userName, email, password, age, phoneNumber) => {
     password: password,
     age: age,
     phoneNumber: phoneNumber,
-    isLogIn: false
+    score: 0,
+    isLogIn: false,
   };
 
   // Sending object to local storage
@@ -197,6 +198,9 @@ const createUser = (userName, email, password, age, phoneNumber) => {
     user.isLogIn = true;
 
     localStorage.setItem(key, JSON.stringify(user));
+
+    // Redirecting user to home page
+    window.location.href = "/index.html";
   }
 };
 
@@ -231,4 +235,3 @@ const signUp = () => {
 };
 
 signUpBtn.addEventListener("click", signUp);
-
