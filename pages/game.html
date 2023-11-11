@@ -12,6 +12,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script type="module" src="../scripts/sidebar.js"></script>
+    <script type="module" src="../scripts/signout.js"></script>
+    <script type="text/javascript" src="../game/scripts/phaser.min.js"></script>
+    <script type="text/javascript" src="../game/scenes/Scene1.js"></script>
+    <script type="text/javascript" src="../game/scripts/game.js"></script>
+
     <title>Game</title>
   </head>
   <body class="overflow-hidden">
@@ -20,84 +26,129 @@
       <nav class="bg-black-custom text-white">
         <div class="navbar-container px-10 py-4">
           <!-- Logo -->
-          <div class="cursor-pointer lg:text-3xl sm:text-xl font-bold text-red-custom">Last Hope</div>
+          <div
+            class="cursor-pointer lg:text-3xl sm:text-xl font-bold text-red-custom"
+          >
+            Last Hope
+          </div>
 
           <!-- Navbar options -->
           <div class="navbar-options">
             <ul class="navbar-list flex items-center justify-between">
               <li>
-                <a href="../index.html" class="cursor-pointer text-lg underline-effect">HOME</a>
+                <a
+                  href="../index.html"
+                  class="cursor-pointer text-lg underline-effect"
+                  >HOME</a
+                >
               </li>
               <li>
-                <a href="./game.html"  class="cursor-pointer text-xl font-bold underline-effect">GAME</a>
+                <a
+                  href="./game.html"
+                  class="cursor-pointer text-xl font-bold underline-effect"
+                  >GAME</a
+                >
               </li>
               <li>
-                <a href="./ranking.html" class="cursor-pointer text-lg underline-effect">RANKING</a>
+                <a
+                  href="./ranking.html"
+                  class="cursor-pointer text-lg underline-effect"
+                  >RANKING</a
+                >
               </li>
               <li>
-                <a href="./help.html" class="cursor-pointer text-lg underline-effect">HELP</a>
+                <a
+                  href="./help.html"
+                  class="cursor-pointer text-lg underline-effect"
+                  >HELP</a
+                >
               </li>
             </ul>
           </div>
 
           <!-- Hamburger Menu - Sidebar for Mobile -->
           <div class="hamburger-menu">
-            <button id="sidebar-button"><i class="fa-solid fa-bars"></i></button>
+            <button id="sidebar-button">
+              <i class="fa-solid fa-bars"></i>
+            </button>
             <div class="sidebar">
-                <ul class="sidebar-list">
-                  <li>
-                    <div class="sidebar-header flex justify-center items-center mb-5">
-                      <div>
-                        <i class="fa-solid fa-user"></i>
-                        <span class="ml-5 username">Guest</span>
-                      </div>
-                      <button id="sidebar-close-button"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                  </li>
-
-                  <li>
+              <ul class="sidebar-list">
+                <li>
+                  <div
+                    class="sidebar-header flex justify-center items-center mb-5"
+                  >
                     <div>
-                      <ul class="sidebar-options">
-                        <li>
-                          <a href="../index.html" class="cursor-pointer underline-effect">HOME</a>
-                        </li>
-                        <li>
-                          <a href="./game.html"  class="cursor-pointer font-bold underline-effect">GAME</a>
-                        </li>
-                        <li>
-                          <a href="./ranking.html" class="cursor-pointer underline-effect">RANKING</a>
-                        </li>
-                        <li>
-                          <a href="./help.html" class="cursor-pointer underline-effect">HELP</a>
-                        </li>
-                      </ul>
+                      <i class="fa-solid fa-user"></i>
+                      <span class="ml-5 username">Guest</span>
                     </div>
-                  </li>
+                    <button id="sidebar-close-button">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                </li>
 
-                  <li>
-                    <div>
-                      <ul>
-                        <li>
-                          <a href="./sign-up.html" class="registry-button py-2">SIGN IN</a>
-                        </li>
-                        <li>
-                          <a href="./log-in.html" class="registry-button py-2">LOG IN</a>
-                        </li>
-                        <li>
-                          <button class="sign-out-button py-2">SIGN OUT</button>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
+                <li>
+                  <div>
+                    <ul class="sidebar-options">
+                      <li>
+                        <a
+                          href="../index.html"
+                          class="cursor-pointer underline-effect"
+                          >HOME</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./game.html"
+                          class="cursor-pointer font-bold underline-effect"
+                          >GAME</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./ranking.html"
+                          class="cursor-pointer underline-effect"
+                          >RANKING</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="./help.html"
+                          class="cursor-pointer underline-effect"
+                          >HELP</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </li>
 
-
-
-                </ul>
+                <li>
+                  <div>
+                    <ul>
+                      <li>
+                        <a href="./sign-up.html" class="registry-button py-2"
+                          >SIGN IN</a
+                        >
+                      </li>
+                      <li>
+                        <a href="./log-in.html" class="registry-button py-2"
+                          >LOG IN</a
+                        >
+                      </li>
+                      <li>
+                        <button class="sign-out-button py-2">SIGN OUT</button>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
 
           <!-- Drop Down Menu Button -->
-          <div class="dropdown-button flex justify-center items-center cursor-pointer rounded-full bg-red-custom text-black-custom">
+          <div
+            class="dropdown-button flex justify-center items-center cursor-pointer rounded-full bg-red-custom text-black-custom"
+          >
             <i class="fa-solid fa-user"></i>
             <!-- Drop Down Menu Container -->
             <div class="dropdown-menu bg-black-custom text-red-custom">
@@ -110,10 +161,14 @@
                   </div>
                 </li>
                 <li>
-                  <a href="./sign-up.html" class="registry-button py-2">SIGN IN</a>
+                  <a href="./sign-up.html" class="registry-button py-2"
+                    >SIGN IN</a
+                  >
                 </li>
                 <li>
-                  <a href="./log-in.html" class="registry-button py-2">LOG IN</a>
+                  <a href="./log-in.html" class="registry-button py-2"
+                    >LOG IN</a
+                  >
                 </li>
                 <li>
                   <button class="sign-out-button py-2">SIGN OUT</button>
@@ -125,13 +180,9 @@
       </nav>
     </section>
 
-    <!-- Main -->
+    <!-- Game Section -->
     <section>
-      <div
-        class="background-container flex flex-col justify-center items-center bg-black"
-      >
-        <h1 class="text-3xl">Game Under Maintenance...</h1>
-      </div>
+      <div id="game-container"></div>
     </section>
 
     <!-- Footer -->
@@ -145,13 +196,17 @@
 
         <!-- Social Media Icon Button -->
         <div class="social-media-container flex justify-between text-white">
-          <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook fa-lg"></i></a>
-          <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-lg"></i></a>
-          <a href="https://twitter.com/?lang=en"><i class="fa-brands fa-x-twitter fa-lg"></i></a>
+          <a href="https://www.facebook.com/"
+            ><i class="fa-brands fa-facebook fa-lg"></i
+          ></a>
+          <a href="https://www.instagram.com/"
+            ><i class="fa-brands fa-instagram fa-lg"></i
+          ></a>
+          <a href="https://twitter.com/?lang=en"
+            ><i class="fa-brands fa-x-twitter fa-lg"></i
+          ></a>
         </div>
       </footer>
     </section>
-    <script type="module" src="../scripts/sidebar.js"></script>
-    <script type="module" src="../scripts/signout.js"></script>
   </body>
 </html>

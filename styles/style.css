@@ -278,6 +278,12 @@ body {
   background: rgba(0, 0, 0, 0.5);
 }
 
+#game-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* --------------------------Footer Styling Section-------------------------- */
 footer {
   height: 8vh;
