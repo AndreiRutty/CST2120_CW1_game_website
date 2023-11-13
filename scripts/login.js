@@ -18,6 +18,39 @@ const resetErrorMessage = () => {
   }
 };
 
+// Function to check the validity of the email
+const validateEmail = (email) => {
+  const atSign = /@/;
+  var valid = true;
+
+  // Checking if user has input an email
+  if (email) {
+    // Checking if the email contains '@'
+    if (!atSign.test(email)) {
+      emailErrorMsg.innerHTML = "Invalid Email!. Please include '@'";
+      valid = false;
+    }
+  } else {
+    emailErrorMsg.innerHTML = "Email cannot be left empty!";
+    valid = false;
+  }
+
+  return valid;
+};
+
+// Function to check the validity of the password
+const validatePassword = (password) => {
+  var valid = true;
+
+  if (!password) {
+    passwordErrorMsg.innerHTML = "Password cannot be left empty!";
+    console.log(`Password Error Message: ${passwordErrorMsg.innerHTML}`);
+    valid = false;
+  }
+
+  return valid;
+};
+
 const logInCheck = (email, password) => {
   var foundEmail = false;
 
@@ -66,7 +99,11 @@ const logIn = () => {
   // Resetting error message headers to default settings
   resetErrorMessage();
 
-  if (email && password) {
+  // Validating email and password
+  var isEmailValid = validateEmail(email);
+  var isPasswordValid = validatePassword(password);
+
+  if (isEmailValid && isPasswordValid) {
     logInCheck(email, password);
   }
 };
