@@ -4,8 +4,6 @@ class Scene1 extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(600, 300, "Game Under Maintenance....", {
-      fill: "#b42b2b",
-    });
+    this.add.text(600, 300, "Game Under Maintenance....");
   }
 }
