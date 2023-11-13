@@ -4,7 +4,7 @@ var config = {
   height: 600,
   parent: 'game-container',
   backgroundColor: 0x000000,
-  scene: [Scene1],
+  scene: [MainMenu],
 };
 
 window.onload = function () {

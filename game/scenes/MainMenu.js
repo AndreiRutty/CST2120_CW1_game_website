@@ -1,4 +1,4 @@
-class Scene1 extends Phaser.Scene {
+class MainMenu extends Phaser.Scene {
   constructor() {
     super("main-menu");
   }
