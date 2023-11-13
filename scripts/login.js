@@ -1,22 +1,13 @@
+// Input Fields
+var emailInput = document.getElementById("email");
+var passwordInput = document.getElementById("password");
+
 // Error Message Header
 var emailErrorMsg = document.getElementById("email-error-message");
 var passwordErrorMsg = document.getElementById("password-error-message");
 
 // Button
 var logInButton = document.getElementById("log-in-button");
-
-// Function to reset the error messages to default setting
-const resetErrorMessage = () => {
-  if (emailErrorMsg) {
-    emailErrorMsg.innerHTML = "";
-    emailErrorMsg.style.color = "#b42b2b";
-  }
-
-  if (passwordErrorMsg) {
-    passwordErrorMsg.innerHTML = "";
-    passwordErrorMsg.style.color = "#b42b2b";
-  }
-};
 
 // Function to check the validity of the email
 const validateEmail = (email) => {
@@ -28,10 +19,15 @@ const validateEmail = (email) => {
     // Checking if the email contains '@'
     if (!atSign.test(email)) {
       emailErrorMsg.innerHTML = "Invalid Email!. Please include '@'";
+      emailErrorMsg.style.color = "#b42b2b";
       valid = false;
+    } else {
+      emailErrorMsg.innerHTML = "Valid Email";
+      emailErrorMsg.style.color = "green";
     }
   } else {
     emailErrorMsg.innerHTML = "Email cannot be left empty!";
+    emailErrorMsg.style.color = "#b42b2b";
     valid = false;
   }
 
@@ -44,7 +40,7 @@ const validatePassword = (password) => {
 
   if (!password) {
     passwordErrorMsg.innerHTML = "Password cannot be left empty!";
-    console.log(`Password Error Message: ${passwordErrorMsg.innerHTML}`);
+    passwordErrorMsg.style.color = "#b42b2b";
     valid = false;
   }
 
@@ -93,19 +89,18 @@ const logInCheck = (email, password) => {
 };
 
 const logIn = () => {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-
   // Resetting error message headers to default settings
   resetErrorMessage();
 
-  // Validating email and password
-  var isEmailValid = validateEmail(email);
-  var isPasswordValid = validatePassword(password);
-
   if (isEmailValid && isPasswordValid) {
-    logInCheck(email, password);
+    logInCheck(emailInput.value, passwordInput.value);
   }
 };
 
 logInButton.addEventListener("click", logIn);
+
+// Live verification
+emailInput.addEventListener("input", () => validateEmail(emailInput.value));
+passwordInput.addEventListener("input", () =>
+  validatePassword(passwordInput.value)
+);

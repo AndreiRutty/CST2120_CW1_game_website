@@ -1,3 +1,10 @@
+// Input Field
+var userNameInput = document.getElementById("username");
+var emailInput = document.getElementById("email");
+var passwordInput = document.getElementById("password");
+var ageInput = document.getElementById("age");
+var phoneNumberInput = document.getElementById("phone-number");
+
 // Error Message Headers
 var usernameErrorMsg = document.getElementById("username-error-message");
 var emailErrorMsg = document.getElementById("email-error-message");
@@ -7,34 +14,6 @@ var phoneNumberErrorMsg = document.getElementById("phone-number-error-message");
 
 // Button
 var signUpBtn = document.getElementById("sign-up-button");
-
-// Function to reset the inner HTML of the error message header
-const resetErrorMessage = () => {
-  if (usernameErrorMsg) {
-    usernameErrorMsg.innerHTML = "";
-    usernameErrorMsg.style.color = "#b42b2b";
-  }
-
-  if (emailErrorMsg) {
-    emailErrorMsg.innerHTML = "";
-    emailErrorMsg.style.color = "#b42b2b";
-  }
-
-  if (passwordErrorMsg) {
-    passwordErrorMsg.innerHTML = "";
-    passwordErrorMsg.style.color = "#b42b2b";
-  }
-
-  if (ageErrorMsg) {
-    ageErrorMsg.innerHTML = "";
-    ageErrorMsg.style.color = "#b42b2b";
-  }
-
-  if (phoneNumberErrorMsg) {
-    phoneNumberErrorMsg.innerHTML = "";
-    phoneNumberErrorMsg.style.color = "b42b2b";
-  }
-};
 
 // Function that will validate the username
 const validateUsername = (userName) => {
@@ -47,13 +26,16 @@ const validateUsername = (userName) => {
 
     if (alreadyExist) {
       usernameErrorMsg.innerHTML = `${userName} is not available. Try a different user name`;
+      usernameErrorMsg.style.color = "#b42b2b";
       valid = false;
+      
     } else {
       usernameErrorMsg.innerHTML = "Valid Username";
       usernameErrorMsg.style.color = "green";
     }
   } else {
     usernameErrorMsg.innerHTML = "Username cannot be left empty!";
+    usernameErrorMsg.style.color = "#b42b2b";
     valid = false;
   }
 
@@ -72,6 +54,7 @@ const validateEmail = (userEmail) => {
     // Checking if the email contains '@'
     if (!atSign.test(userEmail)) {
       emailErrorMsg.innerHTML = "Invalid Email!. Please include '@'";
+      emailErrorMsg.style.color = "#b42b2b";
       valid = false;
     } else {
       // Checking if the email is the correct format
@@ -80,11 +63,13 @@ const validateEmail = (userEmail) => {
         emailErrorMsg.style.color = "green";
       } else {
         emailErrorMsg.innerHTML = "Incomplete Email!";
+        emailErrorMsg.style.color = "#b42b2b";
         valid = false;
       }
     }
   } else {
     emailErrorMsg.innerHTML = "Email cannot be left empty!";
+    emailErrorMsg.style.color = "#b42b2b";
     valid = false;
   }
 
@@ -101,12 +86,14 @@ const validatePassword = (userPassword) => {
     // Checking password length
     if (userPassword.length < 8) {
       passwordErrorMsg.innerHTML = "Password should be eight characters long!";
+      passwordErrorMsg.style.color = "#b42b2b";
       valid = false;
     } else {
       // Checking for password strength -if it includes lowercase, uppercase and numbers
       if (!passwordRegex.test(userPassword)) {
         passwordErrorMsg.innerHTML =
           "Weak Password! Include at least one lowercase, uppercase and a number";
+          passwordErrorMsg.style.color = "#b42b2b";
         valid = false;
       } else {
         passwordErrorMsg.innerHTML = "Strong Password!";
@@ -115,6 +102,7 @@ const validatePassword = (userPassword) => {
     }
   } else {
     passwordErrorMsg.innerHTML = "Password cannot be left empty!";
+    passwordErrorMsg.style.color = "#b42b2b";
     valid = false;
   }
 
@@ -139,6 +127,8 @@ const validateAge = (userAge) => {
 
       if (ageValue < 12) {
         ageErrorMsg.innerHTML = "You are too young to play this game!";
+        ageErrorMsg.style.color = "#b42b2b";
+        valid = false;
       } else {
         ageErrorMsg.innerHTML = "Valid Age!";
         ageErrorMsg.style.color = "green";
@@ -146,6 +136,7 @@ const validateAge = (userAge) => {
     }
   } else {
     ageErrorMsg.innerHTML = "Age cannot be left empty!";
+    ageErrorMsg.style.color = "#b42b2b";
     valid = false;
   }
 
@@ -160,6 +151,7 @@ const validatePhoneNumber = (userPhoneNumber) => {
   if (userPhoneNumber) {
     if (isNaN(userPhoneNumber)) {
       phoneNumberErrorMsg.innerHTML = "Invalid Phone Number!";
+      phoneNumberErrorMsg.style.color = "#b42b2b";
       valid = false;
     } else {
       phoneNumberErrorMsg.innerHTML = "Valid Phone Number!";
@@ -167,6 +159,7 @@ const validatePhoneNumber = (userPhoneNumber) => {
     }
   } else {
     phoneNumberErrorMsg.innerHTML = "Phone Number cannot be left empty!";
+    phoneNumberErrorMsg.style.color = "#b42b2b";
     valid = false;
   }
 
@@ -206,21 +199,13 @@ const createUser = (userName, email, password, age, phoneNumber) => {
 
 // Function to get value of entry field
 const signUp = () => {
-  var userName = document.getElementById("username").value;
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  var age = document.getElementById("age").value;
-  var phoneNumber = document.getElementById("phone-number").value;
-
-  // Resetting error message headers to default settings
-  resetErrorMessage();
 
   // Checking validity of the user input
-  var isUserNameValid = validateUsername(userName);
-  var isEmailValid = validateEmail(email);
-  var isPasswordValid = validatePassword(password);
-  var isAgeValid = validateAge(age);
-  var isPhoneNumber = validatePhoneNumber(phoneNumber);
+  var isUserNameValid = validateUsername(userNameInput.value);
+  var isEmailValid = validateEmail(emailInput.value);
+  var isPasswordValid = validatePassword(passwordInput.value);
+  var isAgeValid = validateAge(ageInput.value);
+  var isPhoneNumber = validatePhoneNumber(phoneNumberInput.value);
 
   if (
     isUserNameValid &&
@@ -230,8 +215,27 @@ const signUp = () => {
     isPhoneNumber
   ) {
     // Creating user and adding the user to the local storage
-    createUser(userName, email, password, age, phoneNumber);
+    createUser(
+      userNameInput.value,
+      emailInput.value,
+      passwordInput.value,
+      ageInput.value,
+      phoneNumberInput.value
+    );
   }
 };
 
 signUpBtn.addEventListener("click", signUp);
+
+// Live verification
+userNameInput.addEventListener("input", () =>
+  validateUsername(userNameInput.value)
+);
+emailInput.addEventListener("input", () => validateEmail(emailInput.value));
+passwordInput.addEventListener("input", () =>
+  validatePassword(passwordInput.value)
+);
+ageInput.addEventListener("input", () => validateAge(ageInput.value));
+phoneNumberInput.addEventListener("input", () =>
+  validatePhoneNumber(phoneNumberInput.value)
+);
