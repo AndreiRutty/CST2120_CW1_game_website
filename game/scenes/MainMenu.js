@@ -4,6 +4,6 @@ class MainMenu extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(600, 300, "Game Under Maintenance....");
+    this.add.text(550, 300, "Game Under Maintenance....");
   }
 }
