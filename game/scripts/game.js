@@ -1,3 +1,4 @@
+// Game Configuration
 var config = {
   type: Phaser.AUTO,
   width: 1280,
@@ -17,6 +18,6 @@ var config = {
   scene: [MainMenu],
 };
 
-window.onload = function () {
-  var game = new Phaser.Game(config);
+window.onload = () => {
+  const game = new Phaser.Game(config);
 };
