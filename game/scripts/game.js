@@ -1,7 +1,7 @@
 var config = {
   type: Phaser.AUTO,
   width: 1500,
-  height: 600,
+  height: 610,
   parent: 'game-container',
   backgroundColor: 0x000000,
   scene: [MainMenu],
