@@ -9,9 +9,20 @@ class MainMenu extends Phaser.Scene {
     this.load.image("playButton", "../assets/Play-Button.png");
   }
 
-  create() {
-    this.gameTileImage = this.add.sprite(640, 170, "gameTitle").setScale(1.1);
-    this.playButtonImage = this.add.sprite(640, 500, "playButton").setScale(0.5);
+  create(data) {
+    // Game Title
+    this.gameTitle = this.add.sprite(640, 170, "gameTitle").setScale(1.1);
+
+    // Play Button
+    this.playButton = this.add.sprite(640, 500, "playButton").setScale(0.5).setInteractive({useHandCursor:true});
+
+    // Assign load Level function to Play Button
+    this.playButton.on('pointerdown', () => this.loadLevel())
+  }
+
+  // Function to load the Level One Scene
+  loadLevel = () => {
+    this.scene.start("level-one");
   }
 }
 

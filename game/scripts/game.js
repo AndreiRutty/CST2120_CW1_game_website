@@ -15,7 +15,7 @@ var config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [MainMenu],
+  scene: [MainMenu, LevelOne],
 };
 
 window.onload = () => {
