@@ -27,7 +27,9 @@ class LevelOne extends Phaser.Scene {
   }
 
   create(data) {
+    // Camera Setting
     this.cameras.main.setZoom(2);
+    this.cameras.main.setBounds(0, 0, 920, 670);
 
     // Map
     this.map = this.make.tilemap({
@@ -44,18 +46,18 @@ class LevelOne extends Phaser.Scene {
     this.tileSetFive = this.map.addTilesetImage("Inside_E", "tiles-five");
 
     // Layer - from lower to upper
-    this.groundLayer = this.map.createLayer("Ground", this.tileSetTwo, 170, 0);
-    this.wallLayer = this.map.createLayer("Wall", this.tileSetOne, 170, 0);
+    this.groundLayer = this.map.createLayer("Ground", this.tileSetTwo, 0, 0);
+    this.wallLayer = this.map.createLayer("Wall", this.tileSetOne, 0, 0);
     this.boundaryLayer = this.map.createLayer(
       "Boundary",
       this.tileSetOne,
-      170,
+      0,
       0
     );
-    this.doorLayer = this.map.createLayer("Door", this.tileSetFive, 170, 0);
+    this.doorLayer = this.map.createLayer("Door", this.tileSetFive, 0, 0);
 
     // Player
-    this.player = this.physics.add.sprite(640, 360, "player");
+    this.player = this.physics.add.sprite(60, 400, "player");
     this.player.setFrame(1);
 
     // Setting the camera to follow our player
@@ -78,7 +80,7 @@ class LevelOne extends Phaser.Scene {
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-    // Animations
+    // Walking Animations
     this.anims.create({
       key: "up",
       frames: this.anims.generateFrameNumbers("player", { start: 9, end: 11 }),
@@ -144,6 +146,10 @@ class LevelOne extends Phaser.Scene {
     ) {
       this.player.anims.stop();
       this.player.setFrame(1);
+
+      // Debugging
+      console.log(this.player.x);
+      console.log(this.player.y);
     }
   }
 }
