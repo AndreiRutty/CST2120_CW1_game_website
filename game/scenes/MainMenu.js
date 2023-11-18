@@ -14,15 +14,36 @@ class MainMenu extends Phaser.Scene {
     this.gameTitle = this.add.sprite(640, 170, "gameTitle").setScale(1.1);
 
     // Play Button
-    this.playButton = this.add.sprite(640, 500, "playButton").setScale(0.5).setInteractive({useHandCursor:true});
+    this.playButton = this.add
+      .sprite(640, 500, "playButton")
+      .setScale(0.5)
+      .setInteractive({ useHandCursor: true });
 
     // Assign load Level function to Play Button
-    this.playButton.on('pointerdown', () => this.loadLevel())
+    this.playButton.on("pointerdown", () => this.loadLevel());
   }
 
   // Function to load the Level One Scene
   loadLevel = () => {
-    this.scene.start("level-one");
-  }
-}
 
+    // Checking if a user is log in before playing the game
+    
+    // Iterating through local storage
+    for (var i = 0; i < localStorage.length; i++) {
+      // Getting the keys
+      var userKey = localStorage.key(i);
+
+      if (userKey != "debug" && userKey != "loglevel") {
+        // Converting from JSON to objects
+        var user = JSON.parse(localStorage.getItem(userKey));
+
+        // Checking if a user is already log in before playing the game
+        if (!user.isLogIn) {
+          alert("Please Log In or Sign Up to play the game");
+        } else {
+          this.scene.start("level-one");
+        }
+      }
+    }
+  };
+}

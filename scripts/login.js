@@ -89,10 +89,7 @@ const logInCheck = (email, password) => {
 };
 
 const logIn = () => {
-  // Resetting error message headers to default settings
-  resetErrorMessage();
-
-  if (isEmailValid && isPasswordValid) {
+  if (validateEmail(emailInput.value) && validatePassword(passwordInput.value)) {
     logInCheck(emailInput.value, passwordInput.value);
   }
 };
