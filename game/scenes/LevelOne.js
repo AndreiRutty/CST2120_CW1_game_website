@@ -12,6 +12,7 @@ class LevelOne extends Phaser.Scene {
     this.load.image("tiles-three", "../game/game-assets/tiles/Inside_C.png");
     this.load.image("tiles-four", "../game/game-assets/tiles/Inside_D.png");
     this.load.image("tiles-five", "../game/game-assets/tiles/Inside_E.png");
+    this.load.image("tiles-six", "../game/game-assets/tiles/Bonus_2.png");
 
     // Tilemap
     this.load.tilemapTiledJSON(
@@ -44,16 +45,16 @@ class LevelOne extends Phaser.Scene {
     this.tileSetThree = this.map.addTilesetImage("Inside_C", "tiles-three");
     this.tileSetFour = this.map.addTilesetImage("Inside_D", "tiles-four");
     this.tileSetFive = this.map.addTilesetImage("Inside_E", "tiles-five");
+    this.tileSetSix = this.map.addTilesetImage("Bonus_2", "tiles-six");
 
     // Layer - from lower to upper
     this.groundLayer = this.map.createLayer("Ground", this.tileSetTwo, 0, 0);
     this.wallLayer = this.map.createLayer("Wall", this.tileSetOne, 0, 0);
-    this.boundaryLayer = this.map.createLayer(
-      "Boundary",
-      this.tileSetOne,
-      0,
-      0
-    );
+    this.boundaryLayer = this.map.createLayer("Boundary", this.tileSetOne, 0, 0);
+    this.wallDecoLayer = this.map.createLayer("Wall-deco", this.tileSetThree, 0, 0);
+    this.secondWallDecoLayer = this.map.createLayer("Wall-deco-2", this.tileSetSix, 0, 0);
+    this.insideDecoWithColLayer = this.map.createLayer("Inside-deco-c", this.tileSetThree, 0, 0);
+    this.insideDecoLayer = this.map.createLayer("Inside-deco", this.tileSetThree, 0, 0);
     this.doorLayer = this.map.createLayer("Door", this.tileSetFive, 0, 0);
 
     // Player
@@ -66,6 +67,7 @@ class LevelOne extends Phaser.Scene {
     // Setting collision for all tiles in the layers except -1 if any
     this.boundaryLayer.setCollisionByExclusion([-1]);
     this.doorLayer.setCollisionByExclusion([-1]);
+    this.insideDecoWithColLayer.setCollisionByExclusion([-1]);
 
     // Adding collision between player and different layers
     this.physics.add.collider(this.player, this.boundaryLayer);
@@ -73,6 +75,8 @@ class LevelOne extends Phaser.Scene {
     this.physics.add.collider(this.player, this.doorLayer, () => {
       console.log("Collide with doors");
     });
+
+    this.physics.add.collider(this.player, this.insideDecoWithColLayer);
 
     // Set up individual keys for W, A, S, D
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -148,8 +152,10 @@ class LevelOne extends Phaser.Scene {
       this.player.setFrame(1);
 
       // Debugging
-      console.log(this.player.x);
-      console.log(this.player.y);
+      // console.log(this.player.x);
+      // console.log(this.player.y);
     }
   }
+
+  
 }
