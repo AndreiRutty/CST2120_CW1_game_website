@@ -47,14 +47,16 @@ class LevelOne extends Phaser.Scene {
     this.tileSetFive = this.map.addTilesetImage("Inside_E", "tiles-five");
     this.tileSetSix = this.map.addTilesetImage("Bonus_2", "tiles-six");
 
-    // Layer - from lower to upper
+    // Layers - from lower to upper
     this.groundLayer = this.map.createLayer("Ground", this.tileSetTwo, 0, 0);
+    this.groundDecoLayer = this.map.createLayer("Ground-deco", this.tileSetFive, 0, 0);
     this.wallLayer = this.map.createLayer("Wall", this.tileSetOne, 0, 0);
     this.boundaryLayer = this.map.createLayer("Boundary", this.tileSetOne, 0, 0);
     this.wallDecoLayer = this.map.createLayer("Wall-deco", this.tileSetThree, 0, 0);
     this.secondWallDecoLayer = this.map.createLayer("Wall-deco-2", this.tileSetSix, 0, 0);
     this.insideDecoWithColLayer = this.map.createLayer("Inside-deco-c", this.tileSetThree, 0, 0);
     this.insideDecoLayer = this.map.createLayer("Inside-deco", this.tileSetThree, 0, 0);
+    this.insideDecoLayerTwo = this.map.createLayer("Inside-deco-2", this.tileSetThree, 0, 0);
     this.doorLayer = this.map.createLayer("Door", this.tileSetFive, 0, 0);
 
     // Player
@@ -69,10 +71,11 @@ class LevelOne extends Phaser.Scene {
     this.doorLayer.setCollisionByExclusion([-1]);
     this.insideDecoWithColLayer.setCollisionByExclusion([-1]);
 
-    // Adding collision between player and different layers
+    // Adding collision between player and the different layers
     this.physics.add.collider(this.player, this.boundaryLayer);
 
     this.physics.add.collider(this.player, this.doorLayer, () => {
+      // Print a message when colliding against the door
       console.log("Collide with doors");
     });
 
@@ -127,16 +130,18 @@ class LevelOne extends Phaser.Scene {
       this.player.setVelocityX(-speed);
       this.player.anims.play("left", true);
     } else if (this.keyD.isDown) {
+      // Moving to the right
       this.player.setVelocityX(speed);
       this.player.anims.play("right", true);
     }
 
     // Vertical Movement
     if (this.keyW.isDown) {
-      // Movement upward
+      // Moving upward
       this.player.setVelocityY(-speed);
       this.player.anims.play("up", true);
     } else if (this.keyS.isDown) {
+      // Moving downward
       this.player.setVelocityY(speed);
       this.player.anims.play("down", true);
     }
@@ -155,7 +160,5 @@ class LevelOne extends Phaser.Scene {
       // console.log(this.player.x);
       // console.log(this.player.y);
     }
-  }
-
-  
+  } 
 }
