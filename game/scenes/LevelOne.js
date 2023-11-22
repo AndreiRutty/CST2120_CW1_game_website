@@ -44,11 +44,13 @@ class LevelOne extends Phaser.Scene {
     this.cameras.main.setZoom(2);
     this.cameras.main.setBounds(0, 0, 920, 670);
 
-    this.scoreText = this.add.text(20, 20, `Score: ${this.score}`, {
+    this.scoreText = this.add.text(350, 200, `Score: ${this.score}`, {
       fontFamily: "Arial",
-      fontSize: "24px",
+      fontSize: "10px",
       color: "#ffffff",
     });
+
+    this.scoreText.setScrollFactor(0).setDepth(10);
 
     // Map
     this.map = this.make.tilemap({
@@ -107,7 +109,7 @@ class LevelOne extends Phaser.Scene {
     //Adding light source
     this.playerLight = this.lights.addLight(this.player.x, this.player.y, 75);
 
-    this.lights.enable().setAmbientColor(0x000108);
+    this.lights.enable().setAmbientColor(0x000000);
 
     // Setting collision for all tiles in the layers except -1 if any
     this.boundaryLayer.setCollisionByExclusion([-1]);
@@ -136,7 +138,6 @@ class LevelOne extends Phaser.Scene {
   }
 
   update(time, delta) {
-    this.scoreText.setScale(0.5);
     // Player Movement
     this.player.move(this.keyW, this.keyA, this.keyS, this.keyD);
 
@@ -177,6 +178,7 @@ class LevelOne extends Phaser.Scene {
     this.physics.add.collider(this.player, item, () => {
       item.destroy();
       this.score += 1;
+      this.scoreText.setText(`Score: ${this.score}`);
       console.log(this.score);
     });
   }
