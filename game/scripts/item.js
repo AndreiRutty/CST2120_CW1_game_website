@@ -1,5 +1,5 @@
 class Item extends Phaser.GameObjects.Sprite {
-  constructor(scene, player, x, y, key) {
+  constructor(scene, x, y, key) {
     super(scene, x, y, key);
     this.scene = scene;
 
@@ -11,6 +11,19 @@ class Item extends Phaser.GameObjects.Sprite {
 
     // Setting the default scale
     this.setScale(0.4);
+
+    this.setPipeline("Light2D");
+
+    // Scaling animation
+    this.scene.tweens.add({
+      targets: this,
+      scaleX: 0.5,
+      scaleY: 0.5,
+      duration: 1000,
+      ease: "Sine.easeInOut",
+      yoyo: true,
+      repeat: -1,
+    });
   }
 }
 

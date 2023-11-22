@@ -1,4 +1,5 @@
 import Item from "../../game/scripts/item.js";
+import Player from "../../game/scripts/player.js";
 
 class LevelOne extends Phaser.Scene {
   constructor() {
@@ -43,6 +44,12 @@ class LevelOne extends Phaser.Scene {
     this.cameras.main.setZoom(2);
     this.cameras.main.setBounds(0, 0, 920, 670);
 
+    this.scoreText = this.add.text(20, 20, `Score: ${this.score}`, {
+      fontFamily: "Arial",
+      fontSize: "24px",
+      color: "#ffffff",
+    });
+
     // Map
     this.map = this.make.tilemap({
       key: "level-one-tilemap",
@@ -59,58 +66,48 @@ class LevelOne extends Phaser.Scene {
     this.tileSetSix = this.map.addTilesetImage("Bonus_2", "tiles-six");
 
     // Layers - from lower to upper
-    this.groundLayer = this.map.createLayer("Ground", this.tileSetTwo, 0, 0);
-    this.groundDecoLayer = this.map.createLayer(
-      "Ground-deco",
-      this.tileSetFive,
-      0,
-      0
-    );
-    this.wallLayer = this.map.createLayer("Wall", this.tileSetOne, 0, 0);
-    this.boundaryLayer = this.map.createLayer(
-      "Boundary",
-      this.tileSetOne,
-      0,
-      0
-    );
-    this.wallDecoLayer = this.map.createLayer(
-      "Wall-deco",
-      this.tileSetThree,
-      0,
-      0
-    );
-    this.secondWallDecoLayer = this.map.createLayer(
-      "Wall-deco-2",
-      this.tileSetSix,
-      0,
-      0
-    );
-    this.insideDecoWithColLayer = this.map.createLayer(
-      "Inside-deco-c",
-      this.tileSetThree,
-      0,
-      0
-    );
-    this.insideDecoLayer = this.map.createLayer(
-      "Inside-deco",
-      this.tileSetThree,
-      0,
-      0
-    );
-    this.insideDecoLayerTwo = this.map.createLayer(
-      "Inside-deco-2",
-      this.tileSetThree,
-      0,
-      0
-    );
-    this.doorLayer = this.map.createLayer("Door", this.tileSetFive, 0, 0);
+    this.groundLayer = this.map
+      .createLayer("Ground", this.tileSetTwo, 0, 0)
+      .setPipeline("Light2D");
+    this.groundDecoLayer = this.map
+      .createLayer("Ground-deco", this.tileSetFive, 0, 0)
+      .setPipeline("Light2D");
+    this.wallLayer = this.map
+      .createLayer("Wall", this.tileSetOne, 0, 0)
+      .setPipeline("Light2D");
+    this.boundaryLayer = this.map
+      .createLayer("Boundary", this.tileSetOne, 0, 0)
+      .setPipeline("Light2D");
+    this.wallDecoLayer = this.map
+      .createLayer("Wall-deco", this.tileSetThree, 0, 0)
+      .setPipeline("Light2D");
+    this.secondWallDecoLayer = this.map
+      .createLayer("Wall-deco-2", this.tileSetSix, 0, 0)
+      .setPipeline("Light2D");
+    this.insideDecoWithColLayer = this.map
+      .createLayer("Inside-deco-c", this.tileSetThree, 0, 0)
+      .setPipeline("Light2D");
+    this.insideDecoLayer = this.map
+      .createLayer("Inside-deco", this.tileSetThree, 0, 0)
+      .setPipeline("Light2D");
+    this.insideDecoLayerTwo = this.map
+      .createLayer("Inside-deco-2", this.tileSetThree, 0, 0)
+      .setPipeline("Light2D");
+    this.doorLayer = this.map
+      .createLayer("Door", this.tileSetFive, 0, 0)
+      .setPipeline("Light2D");
 
     // Player
-    this.player = this.physics.add.sprite(60, 400, "player");
-    this.player.setFrame(1);
+    this.player = new Player(this, 60, 400, "player");
 
     // Setting the camera to follow our player
     this.cameras.main.startFollow(this.player);
+
+    // Lighting
+    //Adding light source
+    this.playerLight = this.lights.addLight(this.player.x, this.player.y, 75);
+
+    this.lights.enable().setAmbientColor(0x000108);
 
     // Setting collision for all tiles in the layers except -1 if any
     this.boundaryLayer.setCollisionByExclusion([-1]);
@@ -127,7 +124,7 @@ class LevelOne extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.insideDecoWithColLayer);
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 20; i++) {
       this.spawnItems();
     }
 
@@ -136,80 +133,16 @@ class LevelOne extends Phaser.Scene {
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-
-    // Walking Animations
-    this.anims.create({
-      key: "up",
-      frames: this.anims.generateFrameNumbers("player", { start: 9, end: 11 }),
-      frameRate: 5,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "down",
-      frames: this.anims.generateFrameNumbers("player", { start: 0, end: 2 }),
-      frameRate: 5,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "left",
-      frames: this.anims.generateFrameNumbers("player", { start: 3, end: 5 }),
-      frameRate: 5,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "right",
-      frames: this.anims.generateFrameNumbers("player", { start: 6, end: 8 }),
-      frameRate: 5,
-      repeat: -1,
-    });
   }
 
   update(time, delta) {
-    // Initialy the player is at rest
-    this.player.setVelocity(0);
-    const speed = 150;
+    this.scoreText.setScale(0.5);
+    // Player Movement
+    this.player.move(this.keyW, this.keyA, this.keyS, this.keyD);
 
-    // Cheecking for keyboard input and move the player accordingly
-
-    // Horizontal Movement
-    if (this.keyA.isDown) {
-      // Moving to the left
-      this.player.setVelocityX(-speed);
-      this.player.anims.play("left", true);
-    } else if (this.keyD.isDown) {
-      // Moving to the right
-      this.player.setVelocityX(speed);
-      this.player.anims.play("right", true);
-    }
-
-    // Vertical Movement
-    if (this.keyW.isDown) {
-      // Moving upward
-      this.player.setVelocityY(-speed);
-      this.player.anims.play("up", true);
-    } else if (this.keyS.isDown) {
-      // Moving downward
-      this.player.setVelocityY(speed);
-      this.player.anims.play("down", true);
-    }
-
-    // Stopping walking animations when not pressing any key
-    if (
-      !this.keyA.isDown &&
-      !this.keyD.isDown &&
-      !this.keyS.isDown &&
-      !this.keyW.isDown
-    ) {
-      this.player.anims.stop();
-      this.player.setFrame(1);
-
-      // Debugging
-      // console.log(this.player.x);
-      // console.log(this.player.y);
-    }
+    // Making the light follow the player
+    this.playerLight.x = this.player.x;
+    this.playerLight.y = this.player.y;
   }
 
   spawnItems() {
@@ -239,13 +172,7 @@ class LevelOne extends Phaser.Scene {
 
     const randomItemIndex = Phaser.Math.Between(0, items.length - 1);
 
-    var item = new Item(
-      this,
-      this.player,
-      randomX,
-      randomY,
-      items[randomItemIndex]
-    );
+    var item = new Item(this, randomX, randomY, items[randomItemIndex]);
 
     this.physics.add.collider(this.player, item, () => {
       item.destroy();
