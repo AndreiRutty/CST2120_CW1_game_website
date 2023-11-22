@@ -1,3 +1,7 @@
+import LevelOne from "../../game/scenes/LevelOne.js";
+import MainMenu from "../../game/scenes/MainMenu.js";
+
+
 // Game Configuration
 var config = {
   type: Phaser.AUTO,

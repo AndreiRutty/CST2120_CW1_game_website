@@ -1,3 +1,5 @@
+import Item from "../../game/scripts/item.js";
+
 class LevelOne extends Phaser.Scene {
   constructor() {
     super("level-one");
@@ -25,9 +27,18 @@ class LevelOne extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 66.5,
     });
+
+    // Items to pick up
+    this.load.image("back-pack", "../game/game-assets/items/Backpack.png");
+    this.load.image("bandage", "../game/game-assets/items/Bandage.png");
+    this.load.image("canned-food", "../game/game-assets/items/CannedFood.png");
+    this.load.image("fresh-food", "../game/game-assets/items/FreshFood.png");
+    this.load.image("med-kit", "../game/game-assets/items/MedicKit.png");
   }
 
   create(data) {
+    this.score = 0;
+
     // Camera Setting
     this.cameras.main.setZoom(2);
     this.cameras.main.setBounds(0, 0, 920, 670);
@@ -49,14 +60,49 @@ class LevelOne extends Phaser.Scene {
 
     // Layers - from lower to upper
     this.groundLayer = this.map.createLayer("Ground", this.tileSetTwo, 0, 0);
-    this.groundDecoLayer = this.map.createLayer("Ground-deco", this.tileSetFive, 0, 0);
+    this.groundDecoLayer = this.map.createLayer(
+      "Ground-deco",
+      this.tileSetFive,
+      0,
+      0
+    );
     this.wallLayer = this.map.createLayer("Wall", this.tileSetOne, 0, 0);
-    this.boundaryLayer = this.map.createLayer("Boundary", this.tileSetOne, 0, 0);
-    this.wallDecoLayer = this.map.createLayer("Wall-deco", this.tileSetThree, 0, 0);
-    this.secondWallDecoLayer = this.map.createLayer("Wall-deco-2", this.tileSetSix, 0, 0);
-    this.insideDecoWithColLayer = this.map.createLayer("Inside-deco-c", this.tileSetThree, 0, 0);
-    this.insideDecoLayer = this.map.createLayer("Inside-deco", this.tileSetThree, 0, 0);
-    this.insideDecoLayerTwo = this.map.createLayer("Inside-deco-2", this.tileSetThree, 0, 0);
+    this.boundaryLayer = this.map.createLayer(
+      "Boundary",
+      this.tileSetOne,
+      0,
+      0
+    );
+    this.wallDecoLayer = this.map.createLayer(
+      "Wall-deco",
+      this.tileSetThree,
+      0,
+      0
+    );
+    this.secondWallDecoLayer = this.map.createLayer(
+      "Wall-deco-2",
+      this.tileSetSix,
+      0,
+      0
+    );
+    this.insideDecoWithColLayer = this.map.createLayer(
+      "Inside-deco-c",
+      this.tileSetThree,
+      0,
+      0
+    );
+    this.insideDecoLayer = this.map.createLayer(
+      "Inside-deco",
+      this.tileSetThree,
+      0,
+      0
+    );
+    this.insideDecoLayerTwo = this.map.createLayer(
+      "Inside-deco-2",
+      this.tileSetThree,
+      0,
+      0
+    );
     this.doorLayer = this.map.createLayer("Door", this.tileSetFive, 0, 0);
 
     // Player
@@ -80,6 +126,10 @@ class LevelOne extends Phaser.Scene {
     });
 
     this.physics.add.collider(this.player, this.insideDecoWithColLayer);
+
+    for (var i = 0; i < 10; i++) {
+      this.spawnItems();
+    }
 
     // Set up individual keys for W, A, S, D
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -160,5 +210,49 @@ class LevelOne extends Phaser.Scene {
       // console.log(this.player.x);
       // console.log(this.player.y);
     }
-  } 
+  }
+
+  spawnItems() {
+    // Items key array
+    const items = [
+      "back-pack",
+      "bandage",
+      "canned-food",
+      "fresh-food",
+      "med-kit",
+    ];
+
+    // Spawn Points Limits By
+    const sectorOne = { x: [80, 496], y: [180, 428] };
+    const sectorTwo = { x: [565, 848], y: [338, 606] };
+
+    // Sector Array
+    const sectors = [sectorOne, sectorTwo];
+    const randomSectorIndex = Phaser.Math.Between(0, 1);
+
+    // Calculating the random x position
+    const xPos = sectors[randomSectorIndex].x;
+    const randomX = Phaser.Math.Between(xPos[0], xPos[1]);
+
+    const yPos = sectors[randomSectorIndex].y;
+    const randomY = Phaser.Math.Between(yPos[0], yPos[1]);
+
+    const randomItemIndex = Phaser.Math.Between(0, items.length - 1);
+
+    var item = new Item(
+      this,
+      this.player,
+      randomX,
+      randomY,
+      items[randomItemIndex]
+    );
+
+    this.physics.add.collider(this.player, item, () => {
+      item.destroy();
+      this.score += 1;
+      console.log(this.score);
+    });
+  }
 }
+
+export default LevelOne;
