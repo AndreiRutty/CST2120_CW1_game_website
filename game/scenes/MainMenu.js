@@ -25,9 +25,9 @@ class MainMenu extends Phaser.Scene {
 
   // Function to load the Level One Scene
   loadLevel = () => {
-
     // Checking if a user is log in before playing the game
-    
+    var isLogIn = false;
+
     // Iterating through local storage
     for (var i = 0; i < localStorage.length; i++) {
       // Getting the keys
@@ -38,15 +38,19 @@ class MainMenu extends Phaser.Scene {
         var user = JSON.parse(localStorage.getItem(userKey));
 
         // Checking if a user is already log in before playing the game
-        if (!user.isLogIn) {
-          alert("Please Log In or Sign Up to play the game");
-        } else {
-          this.scene.start("level-one");
+        if (user.isLogIn) {
+          isLogIn = true;
+          break;
         }
       }
+    }
+
+    if (isLogIn) {
+      this.scene.start("level-one");
+    } else {
+      alert("Please Log In or Sign Up to play the game");
     }
   };
 }
 
-
-export default MainMenu
+export default MainMenu;

@@ -84,6 +84,28 @@ class Player extends Phaser.GameObjects.Sprite {
       // console.log(this.y);
     }
   }
+
+  // Adding point to the player's object in local storage
+  addScore(point) {
+    // Find a player which is logged in
+    // Iterating through local storage
+    for (var i = 0; i < localStorage.length; i++) {
+      // Getting the keys
+      var userKey = localStorage.key(i);
+
+      if (userKey != "debug" && userKey != "loglevel") {
+        // Converting from JSON to objects
+        var user = JSON.parse(localStorage.getItem(userKey));
+
+        // Checking if a user is already log in
+        if (user.isLogIn) {
+          // Add point to the user score tally in localStorage
+          user.score += point;
+          localStorage.setItem(user.name, JSON.stringify(user));
+        }
+      }
+    }
+  }
 }
 
 export default Player;

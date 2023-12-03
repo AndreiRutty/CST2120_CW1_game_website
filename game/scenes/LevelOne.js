@@ -107,9 +107,9 @@ class LevelOne extends Phaser.Scene {
 
     // Lighting
     //Adding light source
-    this.playerLight = this.lights.addLight(this.player.x, this.player.y, 75);
+    this.playerLight = this.lights.addLight(this.player.x, this.player.y, 70);
 
-    this.lights.enable().setAmbientColor(0x000000);
+    this.lights.enable().setAmbientColor(0x222111);
 
     // Setting collision for all tiles in the layers except -1 if any
     this.boundaryLayer.setCollisionByExclusion([-1]);
@@ -126,6 +126,7 @@ class LevelOne extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.insideDecoWithColLayer);
 
+    // Spawning items
     for (var i = 0; i < 20; i++) {
       this.spawnItems();
     }
@@ -178,8 +179,9 @@ class LevelOne extends Phaser.Scene {
     this.physics.add.collider(this.player, item, () => {
       item.destroy();
       this.score += 1;
+      this.player.addScore(1);
       this.scoreText.setText(`Score: ${this.score}`);
-      console.log(this.score);
+
     });
   }
 }
