@@ -50,7 +50,7 @@ class LevelOne extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, 920, 670);
 
     // Score Text
-    this.scoreText = this.add.text(350, 200, `Score: ${this.score}`, {
+    this.scoreText = this.add.text(350, 200, `Score: ${this.score} / ${this.itemsCount}`, {
       fontFamily: "Arial",
       fontSize: "12px",
       color: "#ffffff",
@@ -67,6 +67,7 @@ class LevelOne extends Phaser.Scene {
 
     this.timerText.setScrollFactor(0).setDepth(10);
 
+    // Starting the count down
     this.startCountDown();
 
     // Map
@@ -167,10 +168,10 @@ class LevelOne extends Phaser.Scene {
       // Stop countdown
       clearInterval(this.countDownInterval);
       this.scene.start("victory");
-
     }
   }
 
+  // Function to spawn items on the map
   spawnItems() {
     // Items key array
     const items = [
@@ -184,10 +185,11 @@ class LevelOne extends Phaser.Scene {
     // Spawn Points Limits By
     const sectorOne = { x: [80, 496], y: [180, 428] };
     const sectorTwo = { x: [565, 848], y: [338, 606] };
+    const sectorThree  = { x: [580, 890], y: [94, 200] };
 
     // Sector Array
-    const sectors = [sectorOne, sectorTwo];
-    const randomSectorIndex = Phaser.Math.Between(0, 1);
+    const sectors = [sectorOne, sectorTwo, sectorThree];
+    const randomSectorIndex = Phaser.Math.Between(0, 2);
 
     // Calculating the random x position
     const xPos = sectors[randomSectorIndex].x;
@@ -200,11 +202,12 @@ class LevelOne extends Phaser.Scene {
 
     var item = new Item(this, randomX, randomY, items[randomItemIndex]);
 
+    // Collision Detection
     this.physics.add.collider(this.player, item, () => {
       item.destroy();
       this.score += 1;
       this.player.addScore(1);
-      this.scoreText.setText(`Score: ${this.score}`);
+      this.scoreText.setText(`Score: ${this.score} / ${this.itemsCount}`);
     });
   }
 

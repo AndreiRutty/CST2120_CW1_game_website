@@ -79,9 +79,6 @@ class Player extends Phaser.GameObjects.Sprite {
       this.stop();
       this.setFrame(1);
 
-      // Debugging
-      // console.log(this.x);
-      // console.log(this.y);
     }
   }
 
