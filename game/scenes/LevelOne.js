@@ -38,19 +38,36 @@ class LevelOne extends Phaser.Scene {
   }
 
   create(data) {
+    // Varaibles
     this.score = 0;
+    this.initialTime = 30;
+    this.hasComplete = false;
+    this.itemsCount = 20;
+    this.hasReachedBunker = false;
 
     // Camera Setting
     this.cameras.main.setZoom(2);
     this.cameras.main.setBounds(0, 0, 920, 670);
 
+    // Score Text
     this.scoreText = this.add.text(350, 200, `Score: ${this.score}`, {
       fontFamily: "Arial",
-      fontSize: "10px",
+      fontSize: "12px",
       color: "#ffffff",
     });
 
     this.scoreText.setScrollFactor(0).setDepth(10);
+
+    // Timer text
+    this.timerText = this.add.text(900, 200, `00:${this.initialTime}`, {
+      fontFamily: "Arial",
+      fontSize: "12px",
+      color: "#ffffff",
+    });
+
+    this.timerText.setScrollFactor(0).setDepth(10);
+
+    this.startCountDown();
 
     // Map
     this.map = this.make.tilemap({
@@ -120,14 +137,13 @@ class LevelOne extends Phaser.Scene {
     this.physics.add.collider(this.player, this.boundaryLayer);
 
     this.physics.add.collider(this.player, this.doorLayer, () => {
-      // Print a message when colliding against the door
-      console.log("Collide with doors");
+      this.hasReachedBunker = true;
     });
 
     this.physics.add.collider(this.player, this.insideDecoWithColLayer);
 
     // Spawning items
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < this.itemsCount; i++) {
       this.spawnItems();
     }
 
@@ -145,6 +161,14 @@ class LevelOne extends Phaser.Scene {
     // Making the light follow the player
     this.playerLight.x = this.player.x;
     this.playerLight.y = this.player.y;
+
+    if (this.score == this.itemsCount && this.hasReachedBunker == true) {
+      this.hasComplete = true;
+      // Stop countdown
+      clearInterval(this.countDownInterval);
+      this.scene.start("victory");
+
+    }
   }
 
   spawnItems() {
@@ -181,8 +205,30 @@ class LevelOne extends Phaser.Scene {
       this.score += 1;
       this.player.addScore(1);
       this.scoreText.setText(`Score: ${this.score}`);
-
     });
+  }
+
+  // Function for the cout down timer of the game
+  startCountDown() {
+    this.countDownInterval = setInterval(() => {
+      // Decrementing time
+      this.initialTime -= 1;
+      this.timerText.setText(`00:${this.initialTime}`);
+
+      // Checking if time is less than 10 seconds
+      if (this.initialTime < 10) {
+        this.timerText.setText(`00:0${this.initialTime}`);
+        this.timerText.setStyle({ fill: "#b42b2b" });
+      }
+
+      // Checking if time is less than 0
+      if (this.initialTime == 0 && this.hasComplete == false) {
+        // Stop countdown
+        clearInterval(this.countDownInterval);
+        // Game Over
+        this.scene.start("game-over");
+      }
+    }, 1000);
   }
 }
 

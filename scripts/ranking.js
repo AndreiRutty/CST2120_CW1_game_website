@@ -39,7 +39,7 @@ const sortArrayDescendingOrder = (arr) => {
   return arr;
 };
 
-sortArrayDescendingOrder(userArray);
+
 
 const populateRankingTable = () => {
   // Adding rows in ranking table body
@@ -69,4 +69,6 @@ const populateRankingTable = () => {
   }
 };
 
+
+sortArrayDescendingOrder(userArray);
 populateRankingTable();

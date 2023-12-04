@@ -1,5 +1,7 @@
 import LevelOne from "../../game/scenes/LevelOne.js";
 import MainMenu from "../../game/scenes/MainMenu.js";
+import GameOver from "../../game/scenes/GameOver.js";
+import Victory from "../../game/scenes/Victory.js";
 
 
 // Game Configuration
@@ -19,7 +21,7 @@ var config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [MainMenu, LevelOne],
+  scene: [MainMenu, LevelOne, GameOver, Victory],
 };
 
 window.onload = () => {
