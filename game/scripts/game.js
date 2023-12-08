@@ -1,4 +1,5 @@
 import LevelOne from "../../game/scenes/LevelOne.js";
+import LevelTwo from "../../game/scenes/LevelTwo.js";
 import MainMenu from "../../game/scenes/MainMenu.js";
 import GameOver from "../../game/scenes/GameOver.js";
 import Victory from "../../game/scenes/Victory.js";
@@ -7,7 +8,7 @@ import Victory from "../../game/scenes/Victory.js";
 // Game Configuration
 var config = {
   type: Phaser.AUTO,
-  width: 1280,
+  width: 1300,
   height: 720,
   physics: {
     default: "arcade",
@@ -21,7 +22,7 @@ var config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [MainMenu, LevelOne, GameOver, Victory],
+  scene: [MainMenu, LevelOne, GameOver, Victory, LevelTwo],
 };
 
 window.onload = () => {

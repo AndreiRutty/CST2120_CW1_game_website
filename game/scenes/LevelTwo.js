@@ -1,13 +1,13 @@
 import Item from "../../game/scripts/item.js";
 import Player from "../../game/scripts/player.js";
 
-class LevelOne extends Phaser.Scene {
+class LevelTwo extends Phaser.Scene {
   constructor() {
-    super("level-one");
+    super("level-two");
   }
 
   preload() {
-    console.log("Level One Scene Loaded");
+    console.log("Level Two Scene Loaded");
 
     // Tiles
     this.load.image("tiles-one", "../game/game-assets/tiles/A4.png");
@@ -19,8 +19,8 @@ class LevelOne extends Phaser.Scene {
 
     // Tilemap
     this.load.tilemapTiledJSON(
-      "level-one-tilemap",
-      "../game/game-assets/tilemap/level1.json"
+      "level-two-tilemap",
+      "../game/game-assets/tilemap/level2.json"
     );
 
     // Player
@@ -84,7 +84,7 @@ class LevelOne extends Phaser.Scene {
 
     // Map
     this.map = this.make.tilemap({
-      key: "level-one-tilemap",
+      key: "level-two-tilemap",
       tileWidth: 16,
       tileHeight: 16,
     });
@@ -195,7 +195,7 @@ class LevelOne extends Phaser.Scene {
     ];
 
     // Spawn Points Limits By
-    const sectorOne = { x: [90, 496], y: [180, 428] };
+    const sectorOne = { x: [90, 496], y: [180, 300] };
     const sectorTwo = { x: [565, 848], y: [338, 606] };
     const sectorThree = { x: [580, 890], y: [94, 200] };
 
@@ -247,4 +247,4 @@ class LevelOne extends Phaser.Scene {
   }
 }
 
-export default LevelOne;
+export default LevelTwo;

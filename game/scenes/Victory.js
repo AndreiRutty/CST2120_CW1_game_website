@@ -18,7 +18,7 @@ class Victory extends Phaser.Scene {
   
       // play Button
       this.playButton = this.add
-        .text(600, 500, "PLAY AGAIN", {
+        .text(600, 500, "PLAY", {
           fontFamily: "Arial",
           fontSize: "20px",
           color: "#b42b2b",
@@ -26,7 +26,7 @@ class Victory extends Phaser.Scene {
         .setInteractive({ useHandCursor: true });
   
       // Assign load Level function to Play Button
-      this.playButton.on("pointerdown", () => this.scene.start("level-one"));
+      this.playButton.on("pointerdown", () => this.scene.start("level-two"));
     }
   }
   
