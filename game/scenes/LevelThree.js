@@ -80,7 +80,7 @@ class LevelThree extends Phaser.Scene {
     });
 
     // Starting the count down
-    //this.startCountDown();
+    this.startCountDown();
 
     // Map
     this.map = this.make.tilemap({
