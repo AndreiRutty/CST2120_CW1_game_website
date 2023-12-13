@@ -1,13 +1,13 @@
 import Item from "../../game/scripts/item.js";
 import Player from "../../game/scripts/player.js";
 
-class LevelOne extends Phaser.Scene {
+class LevelThree extends Phaser.Scene {
   constructor() {
-    super("level-one");
+    super("level-three");
   }
 
   preload() {
-    console.log("Level One Scene Loaded");
+    console.log("Level Three Scene Loaded");
 
     // Tiles
     this.load.image("tiles-one", "../game/game-assets/tiles/A4.png");
@@ -19,8 +19,8 @@ class LevelOne extends Phaser.Scene {
 
     // Tilemap
     this.load.tilemapTiledJSON(
-      "level-one-tilemap",
-      "../game/game-assets/tilemap/level1.json"
+      "level-three-tilemap",
+      "../game/game-assets/tilemap/level3.json"
     );
 
     // Player
@@ -40,14 +40,14 @@ class LevelOne extends Phaser.Scene {
   create(data) {
     // Varaibles
     this.score = 0;
-    this.initialTime = 30;
+    this.initialTime = 45;
     this.hasComplete = false;
-    this.itemsCount = 10;
+    this.itemsCount = 15;
     this.hasReachedBunker = false;
 
     // Camera Setting
     this.cameras.main.setZoom(2);
-    this.cameras.main.setBounds(0, 0, 920, 670);
+    this.cameras.main.setBounds(0, 0, 1500, 880);
 
     // Score Text
     this.scoreText = this.add.text(
@@ -80,11 +80,11 @@ class LevelOne extends Phaser.Scene {
     });
 
     // Starting the count down
-    this.startCountDown();
+    //this.startCountDown();
 
     // Map
     this.map = this.make.tilemap({
-      key: "level-one-tilemap",
+      key: "level-three-tilemap",
       tileWidth: 16,
       tileHeight: 16,
     });
@@ -195,13 +195,14 @@ class LevelOne extends Phaser.Scene {
     ];
 
     // Spawn Points Limits By
-    const sectorOne = { x: [90, 496], y: [180, 428] };
-    const sectorTwo = { x: [565, 848], y: [338, 606] };
-    const sectorThree = { x: [580, 890], y: [94, 200] };
+    const sectorOne = { x: [90, 416], y: [177, 438] };
+    const sectorTwo = { x: [242, 642], y: [641, 830] };
+    const sectorThree = { x: [952, 1264], y: [81, 334] };
+    const sectorFour = {x:[928, 1136], y:[609, 734]};
 
     // Sector Array
-    const sectors = [sectorOne, sectorTwo, sectorThree];
-    const randomSectorIndex = Phaser.Math.Between(0, 2);
+    const sectors = [sectorOne, sectorTwo, sectorThree, sectorFour];
+    const randomSectorIndex = Phaser.Math.Between(0, 3);
 
     // Calculating the random x position
     const xPos = sectors[randomSectorIndex].x;
@@ -247,4 +248,4 @@ class LevelOne extends Phaser.Scene {
   }
 }
 
-export default LevelOne;
+export default LevelThree;

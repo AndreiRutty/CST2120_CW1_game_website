@@ -26,7 +26,15 @@ class Victory extends Phaser.Scene {
         .setInteractive({ useHandCursor: true });
   
       // Assign load Level function to Play Button
-      this.playButton.on("pointerdown", () => this.scene.start("level-two"));
+      this.playButton.on("pointerdown", () => this.scene.start("level-three"));
+    }
+
+    loadLevel(){
+      const randomNumber = Phaser.Math.Between(1,3);
+
+      if(randomNumber == 1){
+
+      }
     }
   }
   

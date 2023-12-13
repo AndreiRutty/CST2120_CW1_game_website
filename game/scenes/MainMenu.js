@@ -46,7 +46,7 @@ class MainMenu extends Phaser.Scene {
     }
 
     if (isLogIn) {
-      this.scene.start("level-one");
+      this.scene.start("level-three");
     } else {
       alert("Please Log In or Sign Up to play the game");
     }

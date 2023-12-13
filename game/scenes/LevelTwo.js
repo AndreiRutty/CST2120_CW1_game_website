@@ -40,9 +40,9 @@ class LevelTwo extends Phaser.Scene {
   create(data) {
     // Varaibles
     this.score = 0;
-    this.initialTime = 30;
+    this.initialTime = 45;
     this.hasComplete = false;
-    this.itemsCount = 10;
+    this.itemsCount = 15;
     this.hasReachedBunker = false;
 
     // Camera Setting
@@ -175,7 +175,7 @@ class LevelTwo extends Phaser.Scene {
     this.playerLight.x = this.player.x;
     this.playerLight.y = this.player.y;
 
-    if (this.score >= 1 && this.hasReachedBunker == true) {
+    if (this.score == this.itemsCount && this.hasReachedBunker == true) {
       this.hasComplete = true;
       // Stop countdown
       clearInterval(this.countDownInterval);

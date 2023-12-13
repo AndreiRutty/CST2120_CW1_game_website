@@ -8,7 +8,6 @@ class Player extends Phaser.GameObjects.Sprite {
 
     // Adding physics to the item
     this.scene.physics.world.enable(this);
-    this.body.setCollideWorldBounds(true);
 
     this.setFrame(1);
 
