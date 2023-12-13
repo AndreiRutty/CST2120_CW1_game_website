@@ -2,6 +2,7 @@ import LevelOne from "../../game/scenes/LevelOne.js";
 import LevelTwo from "../../game/scenes/LevelTwo.js";
 import LevelThree from "../../game/scenes/LevelThree.js";
 import LevelFour from "../../game/scenes/LevelFour.js";
+import LevelFive from "../../game/scenes/LevelFive.js";
 import MainMenu from "../../game/scenes/MainMenu.js";
 import GameOver from "../../game/scenes/GameOver.js";
 import Victory from "../../game/scenes/Victory.js";
@@ -24,7 +25,7 @@ var config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [MainMenu, LevelOne, GameOver, Victory, LevelTwo, LevelThree, LevelFour],
+  scene: [MainMenu, LevelOne, GameOver, Victory, LevelTwo, LevelThree, LevelFour, LevelFive],
 };
 
 window.onload = () => {

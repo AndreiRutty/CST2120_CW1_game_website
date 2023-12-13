@@ -29,7 +29,7 @@ class Victory extends Phaser.Scene {
   }
 
   loadRandomLevel() {
-    const scenes = ["level-one", "level-two", "level-three", "level-four"];
+    const scenes = ["level-one", "level-two", "level-three", "level-four", "level-five"];
     const randomNumber = Phaser.Math.Between(0, scenes.length - 1);
     const randomScene = scenes[randomNumber];
 
