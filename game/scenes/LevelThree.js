@@ -40,9 +40,9 @@ class LevelThree extends Phaser.Scene {
   create(data) {
     // Varaibles
     this.score = 0;
-    this.initialTime = 45;
+    this.initialTime = 60;
     this.hasComplete = false;
-    this.itemsCount = 15;
+    this.itemsCount = 10;
     this.hasReachedBunker = false;
 
     // Camera Setting
