@@ -19,6 +19,8 @@ const signOut = () => {
 
         // Redirecting user to home page
         window.location.href = "/index.html";
+
+        alert(`Goodbye ${user.name}`);
       }
     }
   }

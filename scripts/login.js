@@ -76,6 +76,7 @@ const logInCheck = (email, password) => {
             localStorage.setItem(user.name, JSON.stringify(user));
             window.location.href = "/index.html";
             valid = true;
+            alert(`Welcome Back ${user.name}`);
           }
         } else {
           passwordErrorMsg.innerHTML = "Wrong Password.";

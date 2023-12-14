@@ -193,6 +193,8 @@ const createUser = (userName, email, password, age, phoneNumber) => {
 
     // Redirecting user to home page
     window.location.href = "/index.html";
+
+    alert(`Welcome ${user.name}`);
   }
 };
 
