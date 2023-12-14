@@ -47,11 +47,13 @@ const validatePassword = (password) => {
   return valid;
 };
 
+// Function to perform log in checks like user already exist or user is already logged in
 const logInCheck = (email, password) => {
-  var foundEmail = false;
+  var valid = false;
+  var i = 0;
 
   // Iterating through local storage
-  for (var i = 0; i < localStorage.length; i++) {
+  while (!valid && i < localStorage.length) {
     // Getting the keys
     var userKey = localStorage.key(i);
 
@@ -59,37 +61,41 @@ const logInCheck = (email, password) => {
       // Converting from JSON to objects
       var user = JSON.parse(localStorage.getItem(userKey));
 
-      // Checking if a user is already log in
-      if (user.isLogIn) {
-        alert("A user is already Logged In!");
-      } else {
-        // Checking if there is a user with the specified email and password
-        if (user.email == email) {
-          foundEmail = true;
-
-          if (user.password == password) {
+      // Checking if there is a user with the specified email and password
+      if (user.email == email) {
+        if (user.password == password) {
+          // Checking if a user is already log in
+          if (user.isLogIn) {
+            alert("A user is already Logged In!");
+            emailErrorMsg.innerHTML = "A user is already Logged In!";
+            emailErrorMsg.style.color = "#b42b2b";
+            valid = false;
+            break;
+          } else {
             user.isLogIn = true;
             localStorage.setItem(user.name, JSON.stringify(user));
-
-            // Redirecting user to home page
             window.location.href = "/index.html";
-          } else {
-            passwordErrorMsg.innerHTML = "Wrong Password.";
-            passwordErrorMsg.style.color = "#b42b2b";
+            valid = true;
           }
+        } else {
+          passwordErrorMsg.innerHTML = "Wrong Password.";
+          passwordErrorMsg.style.color = "#b42b2b";
+          valid = false;
         }
+      } else {
+        emailErrorMsg.innerHTML = "This email doesn't belong to any user";
+        emailErrorMsg.style.color = "#b42b2b";
       }
     }
-  }
-
-  if (!foundEmail) {
-    emailErrorMsg.innerHTML = "This email doesn't belong to any user";
-    emailErrorMsg.style.color = "#b42b2b2";
+    i++;
   }
 };
 
 const logIn = () => {
-  if (validateEmail(emailInput.value) && validatePassword(passwordInput.value)) {
+  if (
+    validateEmail(emailInput.value) &&
+    validatePassword(passwordInput.value)
+  ) {
     logInCheck(emailInput.value, passwordInput.value);
   }
 };

@@ -28,7 +28,6 @@ const validateUsername = (userName) => {
       usernameErrorMsg.innerHTML = `${userName} is not available. Try a different user name`;
       usernameErrorMsg.style.color = "#b42b2b";
       valid = false;
-      
     } else {
       usernameErrorMsg.innerHTML = "Valid Username";
       usernameErrorMsg.style.color = "green";
@@ -93,7 +92,7 @@ const validatePassword = (userPassword) => {
       if (!passwordRegex.test(userPassword)) {
         passwordErrorMsg.innerHTML =
           "Weak Password! Include at least one lowercase, uppercase and a number";
-          passwordErrorMsg.style.color = "#b42b2b";
+        passwordErrorMsg.style.color = "#b42b2b";
         valid = false;
       } else {
         passwordErrorMsg.innerHTML = "Strong Password!";
@@ -197,15 +196,45 @@ const createUser = (userName, email, password, age, phoneNumber) => {
   }
 };
 
+const logInCheck = (email, password) => {
+  var valid = false;
+  var i = 0;
+
+  // Iterating through local storage
+  while (!valid && i < localStorage.length) {
+    // Getting the keys
+    var userKey = localStorage.key(i);
+
+    if (userKey != "debug" && userKey != "loglevel") {
+      // Converting from JSON to objects
+      var user = JSON.parse(localStorage.getItem(userKey));
+
+      if (user.isLogIn) {
+        alert("A user is already Logged In!");
+
+        usernameErrorMsg.innerHTML = emailErrorMsg.innerHTML = "A user is already Logged In!";
+        usernameErrorMsg.style.color = emailErrorMsg.style.color = "#b42b2b";
+        valid = false;
+        break;
+      } else {
+        valid = true;
+      }
+    }
+    i++;
+  }
+
+  return valid;
+};
+
 // Function to get value of entry field
 const signUp = () => {
-
   // Checking validity of the user input
   var isUserNameValid = validateUsername(userNameInput.value);
   var isEmailValid = validateEmail(emailInput.value);
   var isPasswordValid = validatePassword(passwordInput.value);
   var isAgeValid = validateAge(ageInput.value);
   var isPhoneNumber = validatePhoneNumber(phoneNumberInput.value);
+  var isNotLogIn = logInCheck(emailInput.value, passwordInput.value);
 
   if (
     isUserNameValid &&
@@ -214,14 +243,17 @@ const signUp = () => {
     isAgeValid &&
     isPhoneNumber
   ) {
-    // Creating user and adding the user to the local storage
-    createUser(
-      userNameInput.value,
-      emailInput.value,
-      passwordInput.value,
-      ageInput.value,
-      phoneNumberInput.value
-    );
+    //Checking if a user is already logged in
+    if (isNotLogIn) {
+      // Creating user and adding the user to the local storage
+      createUser(
+        userNameInput.value,
+        emailInput.value,
+        passwordInput.value,
+        ageInput.value,
+        phoneNumberInput.value
+      );
+    }
   }
 };
 
