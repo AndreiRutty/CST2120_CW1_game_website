@@ -196,12 +196,13 @@ const createUser = (userName, email, password, age, phoneNumber) => {
   }
 };
 
-const logInCheck = (email, password) => {
-  var valid = false;
+const signUpCheck = (username, email, password, age, phone) => {
+  var valid = true;
+  var alreadyExist = false;
   var i = 0;
 
   // Iterating through local storage
-  while (!valid && i < localStorage.length) {
+  while (valid && !alreadyExist && i < localStorage.length) {
     // Getting the keys
     var userKey = localStorage.key(i);
 
@@ -210,20 +211,31 @@ const logInCheck = (email, password) => {
       var user = JSON.parse(localStorage.getItem(userKey));
 
       if (user.isLogIn) {
-        alert("A user is already Logged In!");
-
-        usernameErrorMsg.innerHTML = emailErrorMsg.innerHTML = "A user is already Logged In!";
-        usernameErrorMsg.style.color = emailErrorMsg.style.color = "#b42b2b";
         valid = false;
-        break;
-      } else {
-        valid = true;
+      }
+
+      if (user.email == email) {
+        alreadyExist = true;
       }
     }
     i++;
   }
 
-  return valid;
+  if (!valid) {
+    alert("A user is already Logged In!");
+
+    usernameErrorMsg.innerHTML = emailErrorMsg.innerHTML =
+      "A user is already Logged In!";
+    usernameErrorMsg.style.color = emailErrorMsg.style.color = "#b42b2b";
+  } else {
+    if (!alreadyExist) {
+      createUser(username, email, password, age, phone);
+    } else {
+      alert("A user has already this email");
+      emailErrorMsg.innerHTML = "A user has already this email";
+      emailErrorMsg.style.color = "#b42b2b";
+    }
+  }
 };
 
 // Function to get value of entry field
@@ -234,7 +246,6 @@ const signUp = () => {
   var isPasswordValid = validatePassword(passwordInput.value);
   var isAgeValid = validateAge(ageInput.value);
   var isPhoneNumber = validatePhoneNumber(phoneNumberInput.value);
-  var isNotLogIn = logInCheck(emailInput.value, passwordInput.value);
 
   if (
     isUserNameValid &&
@@ -243,17 +254,14 @@ const signUp = () => {
     isAgeValid &&
     isPhoneNumber
   ) {
-    //Checking if a user is already logged in
-    if (isNotLogIn) {
-      // Creating user and adding the user to the local storage
-      createUser(
-        userNameInput.value,
-        emailInput.value,
-        passwordInput.value,
-        ageInput.value,
-        phoneNumberInput.value
-      );
-    }
+    // Creating user and adding the user to the local storage
+    signUpCheck(
+      userNameInput.value,
+      emailInput.value,
+      passwordInput.value,
+      ageInput.value,
+      phoneNumberInput.value
+    );
   }
 };
 
