@@ -180,6 +180,11 @@ class LevelOne extends Phaser.Scene {
       // Stop countdown
       clearInterval(this.countDownInterval);
       this.scene.start("victory");
+
+      // If the player has complete the level then add the score to the original score
+      if (this.hasComplete) {
+        this.player.addScore(this.score);
+      }
     }
   }
 
@@ -214,11 +219,10 @@ class LevelOne extends Phaser.Scene {
 
     var item = new Item(this, randomX, randomY, items[randomItemIndex]);
 
-    // Collision Detection
+    // Collision Detection With Items
     this.physics.add.collider(this.player, item, () => {
       item.destroy();
       this.score += 1;
-      this.player.addScore(1);
       this.scoreText.setText(`Score: ${this.score} / ${this.itemsCount}`);
     });
   }

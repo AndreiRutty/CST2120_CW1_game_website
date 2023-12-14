@@ -181,6 +181,11 @@ class LevelTwo extends Phaser.Scene {
       clearInterval(this.countDownInterval);
       this.scene.start("victory");
     }
+
+    // If the player has complete the level then add the score to the original score
+    if (this.hasComplete) {
+      this.player.addScore(this.score);
+    }
   }
 
   // Function to spawn items on the map
@@ -218,7 +223,6 @@ class LevelTwo extends Phaser.Scene {
     this.physics.add.collider(this.player, item, () => {
       item.destroy();
       this.score += 1;
-      this.player.addScore(1);
       this.scoreText.setText(`Score: ${this.score} / ${this.itemsCount}`);
     });
   }

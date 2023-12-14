@@ -181,6 +181,11 @@ class LevelFour extends Phaser.Scene {
       clearInterval(this.countDownInterval);
       this.scene.start("victory");
     }
+
+    // If the player has complete the level then add the score to the original score
+    if (this.hasComplete) {
+      this.player.addScore(this.score);
+    }
   }
 
   // Function to spawn items on the map
@@ -198,7 +203,7 @@ class LevelFour extends Phaser.Scene {
     const sectorOne = { x: [90, 416], y: [177, 438] };
     const sectorTwo = { x: [242, 642], y: [641, 830] };
     const sectorThree = { x: [952, 1264], y: [81, 334] };
-    const sectorFour = {x:[928, 1136], y:[609, 734]};
+    const sectorFour = { x: [928, 1136], y: [609, 734] };
 
     // Sector Array
     const sectors = [sectorOne, sectorTwo, sectorThree, sectorFour];
@@ -219,7 +224,6 @@ class LevelFour extends Phaser.Scene {
     this.physics.add.collider(this.player, item, () => {
       item.destroy();
       this.score += 1;
-      this.player.addScore(1);
       this.scoreText.setText(`Score: ${this.score} / ${this.itemsCount}`);
     });
   }
