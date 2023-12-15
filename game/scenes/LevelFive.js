@@ -209,14 +209,18 @@ class LevelFive extends Phaser.Scene {
     const randomSectorIndex = Phaser.Math.Between(0, 2);
 
     // Calculating the random x position
+    // Random X Position
     const xPos = sectors[randomSectorIndex].x;
     const randomX = Phaser.Math.Between(xPos[0], xPos[1]);
 
+    // Random Y Position
     const yPos = sectors[randomSectorIndex].y;
     const randomY = Phaser.Math.Between(yPos[0], yPos[1]);
 
+    // Calculating random index position
     const randomItemIndex = Phaser.Math.Between(0, items.length - 1);
 
+    // Create an item object
     var item = new Item(this, randomX, randomY, items[randomItemIndex]);
 
     // Collision Detection

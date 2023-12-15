@@ -40,7 +40,7 @@ const sortArrayDescendingOrder = (arr) => {
 };
 
 
-
+// Function to populate the ranking table with the user's rank, name and score
 const populateRankingTable = () => {
   // Adding rows in ranking table body
   var rowClassName = "text-xl transition-all duration-200 ease-in-out";
@@ -48,12 +48,15 @@ const populateRankingTable = () => {
 
   // Create table row
   for (var i = 0; i < userArray.length; i++) {
+    // Row
     var row = document.createElement("tr");
     row.className = rowClassName;
 
+    // User's name and score
     var userName = userArray[i].split("-")[1];
     var userScore = userArray[i].split("-")[0];
 
+    // Content of the user
     var content = [`${i + 1}`, userName, userScore];
 
     // Creating table header

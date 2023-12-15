@@ -28,11 +28,15 @@ class Victory extends Phaser.Scene {
     this.playButton.on("pointerdown", () => this.loadRandomLevel());
   }
 
+  // Function to load a random level
   loadRandomLevel() {
     const scenes = ["level-one", "level-two", "level-three", "level-four", "level-five"];
+
+    // Generating random level index
     const randomNumber = Phaser.Math.Between(0, scenes.length - 1);
     const randomScene = scenes[randomNumber];
 
+    // Starting random level
     this.scene.start(randomScene);
   }
 }

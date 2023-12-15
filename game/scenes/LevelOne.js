@@ -212,11 +212,14 @@ class LevelOne extends Phaser.Scene {
     const xPos = sectors[randomSectorIndex].x;
     const randomX = Phaser.Math.Between(xPos[0], xPos[1]);
 
+    // Calculating random y position
     const yPos = sectors[randomSectorIndex].y;
     const randomY = Phaser.Math.Between(yPos[0], yPos[1]);
 
+    // Calculating random index position
     const randomItemIndex = Phaser.Math.Between(0, items.length - 1);
 
+    // Creating item object
     var item = new Item(this, randomX, randomY, items[randomItemIndex]);
 
     // Collision Detection With Items

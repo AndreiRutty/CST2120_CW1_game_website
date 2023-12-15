@@ -28,6 +28,7 @@ var config = {
   scene: [MainMenu, LevelOne, GameOver, Victory, LevelTwo, LevelThree, LevelFour, LevelFive],
 };
 
+// Loading game main menu when loading web page
 window.onload = () => {
   const game = new Phaser.Game(config);
 };

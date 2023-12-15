@@ -12,6 +12,7 @@ class Item extends Phaser.GameObjects.Sprite {
     // Setting the default scale
     this.setScale(0.4);
 
+    // Lighting
     this.setPipeline("Light2D");
 
     // Scaling animation

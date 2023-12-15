@@ -18,14 +18,17 @@ const validateEmail = (email) => {
   if (email) {
     // Checking if the email contains '@'
     if (!atSign.test(email)) {
+      // Printing error message for no @
       emailErrorMsg.innerHTML = "Invalid Email!. Please include '@'";
       emailErrorMsg.style.color = "#b42b2b";
       valid = false;
     } else {
+      // Else print valid message
       emailErrorMsg.innerHTML = "Valid Email";
       emailErrorMsg.style.color = "green";
     }
   } else {
+    // no email input, print message
     emailErrorMsg.innerHTML = "Email cannot be left empty!";
     emailErrorMsg.style.color = "#b42b2b";
     valid = false;
@@ -38,7 +41,9 @@ const validateEmail = (email) => {
 const validatePassword = (password) => {
   var valid = true;
 
+  // Checking if user has input a password
   if (!password) {
+    // Print error message for no password
     passwordErrorMsg.innerHTML = "Password cannot be left empty!";
     passwordErrorMsg.style.color = "#b42b2b";
     valid = false;
@@ -66,12 +71,14 @@ const logInCheck = (email, password) => {
         if (user.password == password) {
           // Checking if a user is already log in
           if (user.isLogIn) {
+            // Print Error Messages
             alert("A user is already Logged In!");
             emailErrorMsg.innerHTML = "A user is already Logged In!";
             emailErrorMsg.style.color = "#b42b2b";
             valid = false;
             break;
           } else {
+            // Allow access to the user
             user.isLogIn = true;
             localStorage.setItem(user.name, JSON.stringify(user));
             window.location.href = "/index.html";
@@ -79,11 +86,13 @@ const logInCheck = (email, password) => {
             alert(`Welcome Back ${user.name}`);
           }
         } else {
+          // If wrong password print error message
           passwordErrorMsg.innerHTML = "Wrong Password.";
           passwordErrorMsg.style.color = "#b42b2b";
           valid = false;
         }
       } else {
+        // If wrong email print error message
         emailErrorMsg.innerHTML = "This email doesn't belong to any user";
         emailErrorMsg.style.color = "#b42b2b";
       }

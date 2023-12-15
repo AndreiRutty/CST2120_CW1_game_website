@@ -1,3 +1,4 @@
+// Elements of the webpage
 const hamburgerButton = document.getElementById("sidebar-button");
 const sidebar = document.querySelector(".sidebar");
 const closeButton = document.getElementById("sidebar-close-button");
@@ -8,6 +9,7 @@ const toggleSideBar = () => {
   sidebar.classList.toggle("show");
 };
 
+// Event Listeners
 hamburgerButton.addEventListener("click", toggleSideBar);
 closeButton.addEventListener("click", toggleSideBar);
 

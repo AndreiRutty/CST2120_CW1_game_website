@@ -45,9 +45,12 @@ class MainMenu extends Phaser.Scene {
       }
     }
 
+    // Checking if the user is logged in
     if (isLogIn) {
+      // Start the game if logged in
       this.scene.start("level-one");
     } else {
+      // Print error message for not being logged in
       alert("Please Log In or Sign Up to play the game");
     }
   };

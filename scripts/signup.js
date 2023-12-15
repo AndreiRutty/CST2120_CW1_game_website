@@ -25,14 +25,17 @@ const validateUsername = (userName) => {
     var alreadyExist = localStorage.getItem(userName);
 
     if (alreadyExist) {
+      // Printing error message for exisiting user
       usernameErrorMsg.innerHTML = `${userName} is not available. Try a different user name`;
       usernameErrorMsg.style.color = "#b42b2b";
       valid = false;
     } else {
+      // Printing positive feedback
       usernameErrorMsg.innerHTML = "Valid Username";
       usernameErrorMsg.style.color = "green";
     }
   } else {
+    // Print message for no username input
     usernameErrorMsg.innerHTML = "Username cannot be left empty!";
     usernameErrorMsg.style.color = "#b42b2b";
     valid = false;
@@ -52,21 +55,25 @@ const validateEmail = (userEmail) => {
   if (userEmail) {
     // Checking if the email contains '@'
     if (!atSign.test(userEmail)) {
+      // Print error message for not including @ in email
       emailErrorMsg.innerHTML = "Invalid Email!. Please include '@'";
       emailErrorMsg.style.color = "#b42b2b";
       valid = false;
     } else {
       // Checking if the email is the correct format
       if (emailRegex.test(userEmail)) {
+        // Print positive feedback for valid email
         emailErrorMsg.innerHTML = "Valid Email!";
         emailErrorMsg.style.color = "green";
       } else {
+        // Print error message for invalid email
         emailErrorMsg.innerHTML = "Incomplete Email!";
         emailErrorMsg.style.color = "#b42b2b";
         valid = false;
       }
     }
   } else {
+    // Print error message for no email input
     emailErrorMsg.innerHTML = "Email cannot be left empty!";
     emailErrorMsg.style.color = "#b42b2b";
     valid = false;
@@ -84,22 +91,26 @@ const validatePassword = (userPassword) => {
   if (userPassword) {
     // Checking password length
     if (userPassword.length < 8) {
+      // Print error message for short password
       passwordErrorMsg.innerHTML = "Password should be eight characters long!";
       passwordErrorMsg.style.color = "#b42b2b";
       valid = false;
     } else {
       // Checking for password strength -if it includes lowercase, uppercase and numbers
       if (!passwordRegex.test(userPassword)) {
+        // Print error message for weak password
         passwordErrorMsg.innerHTML =
           "Weak Password! Include at least one lowercase, uppercase and a number";
         passwordErrorMsg.style.color = "#b42b2b";
         valid = false;
       } else {
+        // Print positive feedback for strong password
         passwordErrorMsg.innerHTML = "Strong Password!";
         passwordErrorMsg.style.color = "green";
       }
     }
   } else {
+    // Print error message for no password input
     passwordErrorMsg.innerHTML = "Password cannot be left empty!";
     passwordErrorMsg.style.color = "#b42b2b";
     valid = false;
@@ -125,15 +136,18 @@ const validateAge = (userAge) => {
       var ageValue = Number(userAge);
 
       if (ageValue < 12) {
+        // Print error message for age less than 12
         ageErrorMsg.innerHTML = "You are too young to play this game!";
         ageErrorMsg.style.color = "#b42b2b";
         valid = false;
       } else {
+        // Print positive feedback for valid age
         ageErrorMsg.innerHTML = "Valid Age!";
         ageErrorMsg.style.color = "green";
       }
     }
   } else {
+    // Print error message for no age input
     ageErrorMsg.innerHTML = "Age cannot be left empty!";
     ageErrorMsg.style.color = "#b42b2b";
     valid = false;
@@ -148,15 +162,19 @@ const validatePhoneNumber = (userPhoneNumber) => {
 
   // Checking if the user has input a phone number
   if (userPhoneNumber) {
+    // Checking if phone number is a number
     if (isNaN(userPhoneNumber)) {
+      // Print error message for wrong data type for phone number
       phoneNumberErrorMsg.innerHTML = "Invalid Phone Number!";
       phoneNumberErrorMsg.style.color = "#b42b2b";
       valid = false;
     } else {
+      // Print positive feedback for valid phone number
       phoneNumberErrorMsg.innerHTML = "Valid Phone Number!";
       phoneNumberErrorMsg.style.color = "green";
     }
   } else {
+    // Print error message for no phone number input
     phoneNumberErrorMsg.innerHTML = "Phone Number cannot be left empty!";
     phoneNumberErrorMsg.style.color = "#b42b2b";
     valid = false;
@@ -198,6 +216,7 @@ const createUser = (userName, email, password, age, phoneNumber) => {
   }
 };
 
+// Function to perform validation check before signing user 
 const signUpCheck = (username, email, password, age, phone) => {
   var valid = true;
   var alreadyExist = false;
@@ -212,10 +231,12 @@ const signUpCheck = (username, email, password, age, phone) => {
       // Converting from JSON to objects
       var user = JSON.parse(localStorage.getItem(userKey));
 
+      // Checking if a user is login
       if (user.isLogIn) {
         valid = false;
       }
 
+      // Checking if a user has already this email
       if (user.email == email) {
         alreadyExist = true;
       }
@@ -223,16 +244,21 @@ const signUpCheck = (username, email, password, age, phone) => {
     i++;
   }
 
+  // Checking for validity - user logged in
   if (!valid) {
+    // Print error message if user is already logged in
     alert("A user is already Logged In!");
 
     usernameErrorMsg.innerHTML = emailErrorMsg.innerHTML =
       "A user is already Logged In!";
     usernameErrorMsg.style.color = emailErrorMsg.style.color = "#b42b2b";
   } else {
+    // Checking if user already exist
     if (!alreadyExist) {
+      // Create user if not already exist
       createUser(username, email, password, age, phone);
     } else {
+      // Print error message for already existing user
       alert("A user has already this email");
       emailErrorMsg.innerHTML = "A user has already this email";
       emailErrorMsg.style.color = "#b42b2b";
@@ -256,7 +282,7 @@ const signUp = () => {
     isAgeValid &&
     isPhoneNumber
   ) {
-    // Creating user and adding the user to the local storage
+    // Performing sign up check
     signUpCheck(
       userNameInput.value,
       emailInput.value,
